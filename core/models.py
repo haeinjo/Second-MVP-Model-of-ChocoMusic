@@ -28,3 +28,25 @@ class AbstractItem(models.Model):
 
     class Meta:
         abstract = True
+
+
+class Genre(AbstractItem):
+    """
+    class: Genre
+    author: haein
+    des: 장르
+    date: 2020-03-17
+    """
+
+    pass
+
+
+class Position(AbstractItem):
+    """
+    class: Position
+    author: haein
+    des: 음악 역량
+    date: 2020-03-17
+    """
+
+    pass

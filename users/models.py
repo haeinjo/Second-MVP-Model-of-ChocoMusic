@@ -27,6 +27,8 @@ class User(AbstractUser):
     address = models.CharField(max_length=128)
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES)  # choice 항목 상의
     avatar = models.ImageField()
+    positions = models.ManyToManyField("core.Position", related_name="users")
+    genres = models.ManyToManyField("core.Genre", related_name="users")
     # images --- 추후 개발 및 상의 필요
 
     def __str__(self):

@@ -2,28 +2,6 @@ from django.db import models
 from core import models as core_models
 
 
-class Genre(core_models.AbstractItem):
-    """
-    class: Genre
-    author: haein
-    des: 장르
-    date: 2020-03-17
-    """
-
-    pass
-
-
-class Position(core_models.AbstractItem):
-    """
-    class: Position
-    author: haein
-    des: 음악 역량
-    date: 2020-03-17
-    """
-
-    pass
-
-
 class Project(core_models.TimeStamppedModel):
 
     """
@@ -36,8 +14,8 @@ class Project(core_models.TimeStamppedModel):
     user = models.ManyToManyField("users.User", related_name="projects")
     name = models.CharField(max_length=128)
     activeRegion = models.CharField(max_length=256)
-    positions = models.ManyToManyField("Position")
-    genres = models.ManyToManyField("Genre")
+    positions = models.ManyToManyField("core.Position")
+    genres = models.ManyToManyField("core.Genre")
     avatar = models.ImageField()
     is_solo = models.BooleanField()
     # bestSong = models.ForeignKey(SongInfo...)   SongInfo 구현 필요
