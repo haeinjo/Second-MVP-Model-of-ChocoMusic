@@ -7,18 +7,17 @@ class Project(core_models.TimeStamppedModel):
     """
     class: Project
     author: haein
-    des: Project instance to make albums, songs and teams
-    date: 2020-03-17
+    des: Project Model to make project
+    date: 2020-03-19
     """
 
-    user = models.ManyToManyField("users.User", related_name="projects")
-    name = models.CharField(max_length=128)
-    activeRegion = models.CharField(max_length=256)
-    positions = models.ManyToManyField("core.Position")
-    genres = models.ManyToManyField("core.Genre")
-    avatar = models.ImageField()
-    is_solo = models.BooleanField()
-    # bestSong = models.ForeignKey(SongInfo...)   SongInfo 구현 필요
+    title = models.CharField(max_length=128)
+    description = models.TextField()
+    photo = models.ImageField()
+    team = models.ForeignKey(
+        "teams.Team", on_delete=models.CASCADE, related_name="projects"
+    )
+    participants = models.ManyToManyField("users.User", related_name="projects")
 
     def __str__(self):
-        return f"{self.Name} at {self.activeRegion}"
+        return f"{self.team.name} - {self.title}"

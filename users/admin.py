@@ -1,9 +1,10 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from . import models as user_models
 
 
 @admin.register(user_models.User)
-class UserAdmin(admin.ModelAdmin):
+class CustomUserAdmin(UserAdmin):
     """
     class: UserAdmin
     author: haein
@@ -11,4 +12,28 @@ class UserAdmin(admin.ModelAdmin):
     date: 2020-03-12
     """
 
-    pass
+    fieldsets = UserAdmin.fieldsets + (
+        (
+            "Custom Profile",
+            {
+                "fields": (
+                    "alias",
+                    "birthdate",
+                    "address",
+                    "gender",
+                    "avatar",
+                    "positions",
+                    "genres",
+                    "bio",
+                )
+            },
+        ),
+    )
+
+    list_display = UserAdmin.list_display + (
+        "alias",
+        "birthdate",
+        "address",
+        "gender",
+        "avatar",
+    )

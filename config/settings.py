@@ -42,12 +42,10 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     "users.apps.UsersConfig",
     "songs.apps.SongsConfig",
-    "teams.apps.TeamsConfig",
-    "albums.apps.AlbumsConfig",
     "evaluations.apps.EvaluationsConfig",
-    "solos.apps.SolosConfig",
     "core.apps.CoreConfig",
     "projects.apps.ProjectsConfig",
+    "teams.apps.TeamsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
@@ -125,3 +123,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
+
+AUTH_USER_MODEL = "users.User"
+

@@ -24,7 +24,7 @@ class AbstractItem(models.Model):
     date: 2020-03-12
     """
 
-    name = models.CharField(max_length="32")
+    name = models.CharField(max_length=32)
 
     class Meta:
         abstract = True
