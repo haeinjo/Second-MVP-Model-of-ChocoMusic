@@ -46,6 +46,8 @@ PROJECT_APPS = [
     "core.apps.CoreConfig",
     "projects.apps.ProjectsConfig",
     "teams.apps.TeamsConfig",
+    "recruitments.apps.RecruitmentsConfig",
+    "conversations.apps.ConversationsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS

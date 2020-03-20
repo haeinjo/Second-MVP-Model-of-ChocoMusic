@@ -13,7 +13,7 @@ class Team(core_models.TimeStamppedModel):
 
     user = models.ManyToManyField("users.User", related_name="projects")
     name = models.CharField(max_length=128)
-    activeRegion = models.CharField(max_length=256)
+    active_region = models.CharField(max_length=256)
     positions = models.ManyToManyField("core.Position")
     genres = models.ManyToManyField("core.Genre")
     avatar = models.ImageField()
@@ -21,4 +21,4 @@ class Team(core_models.TimeStamppedModel):
     # bestSong = models.ForeignKey(SongInfo...)   SongInfo 구현 필요
 
     def __str__(self):
-        return f"{self.Name} at {self.activeRegion}"
+        return f"{self.Name} at {self.active_region}"
