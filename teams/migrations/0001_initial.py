@@ -8,18 +8,22 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('core', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Project',
+            name='Team',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateField(auto_now_add=True)),
                 ('updated', models.DateField(auto_now=True)),
-                ('title', models.CharField(max_length=128)),
-                ('description', models.TextField()),
-                ('photo', models.ImageField(upload_to='')),
+                ('name', models.CharField(max_length=128)),
+                ('active_region', models.CharField(max_length=256)),
+                ('avatar', models.ImageField(upload_to='')),
+                ('is_solo', models.BooleanField()),
+                ('genres', models.ManyToManyField(to='core.Genre')),
+                ('positions', models.ManyToManyField(to='core.Position')),
             ],
             options={
                 'abstract': False,

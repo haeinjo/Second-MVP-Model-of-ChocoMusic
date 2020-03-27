@@ -8,7 +8,7 @@ class BaseSong(core_models.TimeStamppedModel):
     class: BaseSong
     author: haein
     des: BaseSong Model Definition
-    date: 2020-03-17
+    date: 2020-03-17e
     """
 
     title = models.CharField(max_length=64)
@@ -18,19 +18,7 @@ class BaseSong(core_models.TimeStamppedModel):
     published_date = models.DateField(auto_now_add=True)
 
 
-class _Role(core_models.AbstractItem):
-
-    """
-    class: _Role
-    author: haein
-    des: Roles for making songs
-    date: 2020-03-19
-    """
-
-    pass
-
-
-class Role(_Role):
+class Role(core_models.AbstractItem):
 
     """
     class: Role
