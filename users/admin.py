@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from . import models as user_models
+from core import admin as core_admin
 
 
 @admin.register(user_models.User)
@@ -36,4 +37,16 @@ class CustomUserAdmin(UserAdmin):
         "address",
         "gender",
         "avatar",
+    )
+
+    filter_horizontal = (
+        "positions",
+        "genres",
+    )
+
+    search_fields = UserAdmin.search_fields + ("positions__name", "genres__name",)
+
+    list_filter = UserAdmin.list_filter + (
+        ("positions__name", core_admin.custom_titled_filter("Position")),
+        ("genres__name", core_admin.custom_titled_filter("Genre")),
     )

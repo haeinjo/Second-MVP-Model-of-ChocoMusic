@@ -2,7 +2,7 @@ from django.db import models
 from core import models as core_models
 
 
-class RecruitedPosition(core_models.TimeStamppedModel):
+class RecruitedPosition(models.Model):
 
     """
     class: RecruitedPosition
@@ -14,6 +14,12 @@ class RecruitedPosition(core_models.TimeStamppedModel):
     number = models.IntegerField()
     position = models.ForeignKey(
         "core.Position", on_delete=models.CASCADE, related_name="recruited_positions"
+    )
+    recruit = models.ForeignKey(
+        "Recruit",
+        on_delete=models.CASCADE,
+        related_name="recruited_positions",
+        default=None,
     )
 
 
@@ -30,7 +36,9 @@ class Recruit(core_models.TimeStamppedModel):
     active_region = models.CharField(max_length=128)
     description = models.TextField()
     genres = models.ManyToManyField("core.Genre", related_name="recruits")
-    positions = models.ManyToManyField("RecruitedPosition", related_name="recruits")
     team = models.ForeignKey(
         "teams.Team", on_delete=models.CASCADE, related_name="recruits"
     )
+
+    def __str__(self):
+        return f"{self.title}"

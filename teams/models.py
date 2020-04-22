@@ -11,7 +11,7 @@ class Team(core_models.TimeStamppedModel):
     date: 2020-03-17
     """
 
-    user = models.ManyToManyField("users.User", related_name="teams")
+    users = models.ManyToManyField("users.User", related_name="teams")
     name = models.CharField(max_length=128)
     active_region = models.CharField(max_length=256)
     positions = models.ManyToManyField("core.Position")
@@ -22,12 +22,3 @@ class Team(core_models.TimeStamppedModel):
 
     def __str__(self):
         return f"{self.Name} at {self.active_region}"
-
-    def user_list(self):
-        users = self.user.objects.all()
-        usernames = []
-
-        for user in users:
-            usernames.append(user.alias)
-
-        return ", ".join(usernames)
