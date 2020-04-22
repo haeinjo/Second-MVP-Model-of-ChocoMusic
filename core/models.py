@@ -38,7 +38,8 @@ class Genre(AbstractItem):
     date: 2020-03-17
     """
 
-    pass
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Position(AbstractItem):

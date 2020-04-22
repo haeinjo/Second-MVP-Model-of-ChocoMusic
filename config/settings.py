@@ -39,6 +39,10 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
+THIRD_PARTY_APPS = [
+    "django_seed",
+]
+
 PROJECT_APPS = [
     "users.apps.UsersConfig",
     "songs.apps.SongsConfig",
@@ -50,7 +54,7 @@ PROJECT_APPS = [
     "conversations.apps.ConversationsConfig",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -127,4 +131,3 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 AUTH_USER_MODEL = "users.User"
-

@@ -50,3 +50,5 @@ class CustomUserAdmin(UserAdmin):
         ("positions__name", core_admin.custom_titled_filter("Position")),
         ("genres__name", core_admin.custom_titled_filter("Genre")),
     )
+
+    ordering = ("-date_joined",)

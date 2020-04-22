@@ -10,6 +10,7 @@ pillow = "*"
 
 [packages]
 django = "*"
+django-seed = "*"
 
 [requires]
 python_version = "3.7"
