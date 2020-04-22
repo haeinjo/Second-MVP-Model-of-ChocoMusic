@@ -8,7 +8,7 @@ class BaseSong(core_models.TimeStamppedModel):
     class: BaseSong
     author: haein
     des: BaseSong Model Definition
-    date: 2020-03-17e
+    date: 2020-03-17
     """
 
     title = models.CharField(max_length=64)
@@ -16,6 +16,13 @@ class BaseSong(core_models.TimeStamppedModel):
     lyricist = models.CharField(max_length=64)
     singer = models.CharField(max_length=64)
     published_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "Base Song"
+        verbose_name_plural = "Base Songs"
 
 
 class Role(core_models.AbstractItem):
@@ -27,11 +34,14 @@ class Role(core_models.AbstractItem):
     date: 2020-03-19
     """
 
-    users = models.ManyToManyField("users.USer", related_name="roles")
+    users = models.ManyToManyField("users.User", related_name="roles")
 
     def __str__(self):
         users = self.users.all()
-        return f"{self.name}: {', '.join(users)}"
+        usernames = []
+        for user in users:
+            usernames.append(user.alias)
+        return f"{self.name}: {', '.join(usernames)}"
 
 
 class Song(core_models.TimeStamppedModel):
@@ -53,4 +63,4 @@ class Song(core_models.TimeStamppedModel):
     is_covered = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.project.name} - {self.song.title}"
+        return f"{self.project.name} - {self.base_song.title}"
