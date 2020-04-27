@@ -33,7 +33,6 @@ class Recruit(core_models.TimeStamppedModel):
     """
 
     title = models.CharField(max_length=64)
-    active_region = models.CharField(max_length=128)
     description = models.TextField()
     genres = models.ManyToManyField("core.Genre", related_name="recruits")
     team = models.ForeignKey(

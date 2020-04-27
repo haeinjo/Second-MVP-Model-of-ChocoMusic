@@ -30,13 +30,10 @@ class RecruitAdmin(admin.ModelAdmin):
     date: 2020-04-22
     """
 
-    list_display = ("title", "active_region", "team")
+    list_display = ("title", "team")
 
     fieldsets = (
-        (
-            "Recruit Info",
-            {"fields": ("title", "active_region", "description", "genres")},
-        ),
+        ("Recruit Info", {"fields": ("title", "description", "genres")},),
         ("By", {"fields": ("team",)}),
     )
 

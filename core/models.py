@@ -40,6 +40,8 @@ class Genre(AbstractItem):
     date: 2020-03-17
     """
 
+    objects = managers.CustomManager()
+
     def __str__(self):
         return f"{self.name}"
 
@@ -51,6 +53,8 @@ class Position(AbstractItem):
     des: 음악 역량
     date: 2020-03-17
     """
+
+    objects = managers.CustomManager()
 
     def __str__(self):
         return f"{self.name}"

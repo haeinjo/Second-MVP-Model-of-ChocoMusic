@@ -13,7 +13,7 @@ class CustomManager(models.Manager):
 
     def random_records(self):
         all_self_number = self.count()
-        self_number = random.randint(0, min(all_self_number, 5))
+        self_number = random.randint(1, min(all_self_number, 5))
         begin_index = random.randint(0, all_self_number - self_number)
         end_index = begin_index + self_number
         added_selfs = self.all()[begin_index:end_index]
