@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from core import managers
 
 
 class User(AbstractUser):
@@ -29,6 +30,8 @@ class User(AbstractUser):
     birthdate = models.DateField(blank=True, null=True)
     positions = models.ManyToManyField("core.Position", related_name="users")
     genres = models.ManyToManyField("core.Genre", related_name="users")
+
+    objects = managers.CustomManager()
 
     def __str__(self):
         return f"{self.email}"

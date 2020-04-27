@@ -25,23 +25,26 @@ class BaseSong(core_models.TimeStamppedModel):
         verbose_name_plural = "Base Songs"
 
 
-class Role(core_models.AbstractItem):
+class Role(core_models.TimeStamppedModel):
 
     """
     class: Role
     author: haein
-    des: Match users with role
+    des: Match users with a role
     date: 2020-03-19
     """
 
     users = models.ManyToManyField("users.User", related_name="roles")
+    position = models.ForeignKey(
+        "core.Position", on_delete=models.CASCADE, related_name="roles", default=None,
+    )
 
     def __str__(self):
         users = self.users.all()
         usernames = []
         for user in users:
             usernames.append(user.alias)
-        return f"{self.name}: {', '.join(usernames)}"
+        return f"{self.position.name}: {', '.join(usernames)}"
 
 
 class Song(core_models.TimeStamppedModel):

@@ -29,8 +29,8 @@ class RoleAdmin(admin.ModelAdmin):
     """
 
     filter_horizontal = ("users",)
-    list_filter = (("name", core_admin.custom_titled_filter("Position")),)
-    search_fields = ("users__email", "users__alia", "name")
+    list_filter = (("position__name", core_admin.custom_titled_filter("Position")),)
+    search_fields = ("users__email", "users__alia", "position__name")
 
 
 @admin.register(models.Song)

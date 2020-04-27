@@ -27,10 +27,7 @@ class TeamAdmin(admin.ModelAdmin):
         ),
     )
 
-    list_filter = (
-        "is_solo",
-        "active_region",
-    )
+    list_filter = ("is_solo",)
 
     search_fields = ("name", "users__email", "genres__name", "positions__name")
 

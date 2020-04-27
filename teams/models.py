@@ -21,4 +21,4 @@ class Team(core_models.TimeStamppedModel):
     # bestSong = models.ForeignKey(SongInfo...)   SongInfo 구현 필요
 
     def __str__(self):
-        return f"{self.Name} at {self.active_region}"
+        return f"{self.name} at {self.active_region}"
