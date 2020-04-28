@@ -33,6 +33,10 @@ class RoleAdmin(admin.ModelAdmin):
     search_fields = ("users__email", "users__alia", "position__name")
 
 
+class RoleInline(admin.TabularInline):
+    model = models.Role
+
+
 @admin.register(models.Song)
 class SongAdmin(admin.ModelAdmin):
 
@@ -45,10 +49,13 @@ class SongAdmin(admin.ModelAdmin):
 
     list_display = ("project", "base_song", "is_covered")
 
+    inlines = [
+        RoleInline,
+    ]
+
     fieldsets = (
         ("By", {"fields": ("project",)}),
         ("Song Info", {"fields": ("base_song",)}),
-        ("Made by", {"fields": ("roles",)}),
     )
     search_fields = (
         "base_song__title",
@@ -59,5 +66,3 @@ class SongAdmin(admin.ModelAdmin):
     )
 
     list_filter = ("is_covered",)
-
-    filter_horizontal = ("roles",)

@@ -35,3 +35,6 @@ class User(AbstractUser):
 
     def __str__(self):
         return f"{self.email}"
+
+    def random_records(self):
+        return self.objects.random_records(self)

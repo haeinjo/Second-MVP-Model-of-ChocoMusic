@@ -44,7 +44,7 @@ class Command(BaseCommand):
 
         for project in created_projects:
             project = project_models.Project.objects.get(pk=project)
-            participants = project.team.users.all()
+            participants = project.team.users.random_records()
             for participant in participants:
                 project.participants.add(participant)
             project.save()

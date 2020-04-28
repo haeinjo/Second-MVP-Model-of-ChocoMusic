@@ -48,6 +48,7 @@ class Command(BaseCommand):
             for genre in genres:
                 recruitment.genres.add(genre)
             recruitment.save()
+            # make RecruitedPosition
             positions = core_models.Position.objects.random_records()
             for position in positions:
                 recruitment_position = recruitment_models.RecruitedPosition(
