@@ -14,6 +14,9 @@ class ListCategory(core_models.TimeStamppedModel):
     title = models.CharField(max_length=32)
     used = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.title
+
 
 class PlayList(core_models.TimeStamppedModel):
 
