@@ -52,6 +52,7 @@ PROJECT_APPS = [
     "teams.apps.TeamsConfig",
     "recruitments.apps.RecruitmentsConfig",
     "conversations.apps.ConversationsConfig",
+    "playlists.apps.PlaylistsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
