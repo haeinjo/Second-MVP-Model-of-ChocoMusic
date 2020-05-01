@@ -46,15 +46,15 @@ class Command(BaseCommand):
         created_lists = flatten(list(created_lists.values()))
 
         for l in created_lists:
-            l = playlist_models.PlayList.objects.get(pk=l)
+            created_list = playlist_models.PlayList.objects.get(pk=l)
             song_cnt = song_models.Song.objects.count()
             random_number = random.randint(min(2, song_cnt), min(50, song_cnt))
 
             songs = song_models.Song.objects.all().order_by("?")[2:random_number]
 
             for song in songs:
-                l.songs.add(song)
+                created_list.songs.add(song)
 
-            l.save()
+            created_list.save()
 
         self.stdout.write(self.style.SUCCESS(f"{number} playlists are created!"))
