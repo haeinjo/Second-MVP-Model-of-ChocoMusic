@@ -203,4 +203,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# environment
+.env
+
 # End of https://www.gitignore.io/api/django,python,windows,visualstudiocode
