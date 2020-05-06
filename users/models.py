@@ -21,15 +21,17 @@ class User(AbstractUser):
         (GENDER_OTHER, "Other"),
     )
 
-    email = models.EmailField(max_length=256, unique=True)  # unique 부분에 대해서는 추후 상의가 필요함
+    email = models.EmailField(max_length=256)  # unique 부분에 대해서는 추후 상의가 필요함
     alias = models.CharField(max_length=64)
     address = models.CharField(max_length=128)
     bio = models.TextField(default="")
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES)  # choice 항목 상의
     avatar = models.ImageField()
     birthdate = models.DateField(blank=True, null=True)
-    positions = models.ManyToManyField("core.Position", related_name="users")
-    genres = models.ManyToManyField("core.Genre", related_name="users")
+    positions = models.ManyToManyField(
+        "core.Position", related_name="users", blank=True
+    )
+    genres = models.ManyToManyField("core.Genre", related_name="users", blank=True)
 
     objects = managers.CustomManager()
 

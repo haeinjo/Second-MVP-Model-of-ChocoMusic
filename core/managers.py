@@ -1,8 +1,8 @@
 import random
-from django.db import models
+from django.contrib.auth import models
 
 
-class CustomManager(models.Manager):
+class CustomManager(models.UserManager):
 
     """
     class: CustomManager

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block page_title %}
+가입을 환영 합니다. 뮤지션이 되기 위한 정보 입력
+{% endblock page_title %}
+
+
+{% block content %}
+<form method="POST" class="post-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock content %}
