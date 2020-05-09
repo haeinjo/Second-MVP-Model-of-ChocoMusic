@@ -32,7 +32,7 @@ class Command(BaseCommand):
             {
                 "name": lambda x: seeder.faker.user_name(),
                 "active_region": lambda x: seeder.faker.address(),
-                "is_solo": lambda x: random.randint(1, 2) == 1,
+                "is_solo": lambda x: random.choice([True, False]),
             },
         )
 
@@ -41,7 +41,9 @@ class Command(BaseCommand):
 
         for team in created_teams:
             team = team_models.Team.objects.get(pk=team)
-            added_users = user_models.User.objects.random_records()
+            added_users = user_models.User.objects.order_by("?").all()[
+                : random.randint(1, 5)
+            ]
 
             users_positions = []
             users_genres = []

@@ -1,5 +1,4 @@
 from django.db import models
-from . import managers
 
 
 class TimeStamppedModel(models.Model):
@@ -12,7 +11,6 @@ class TimeStamppedModel(models.Model):
 
     created = models.DateField(auto_now_add=True, null=True)
     updated = models.DateField(auto_now=True)
-    objects = managers.CustomManager()
 
     class Meta:
         abstract = True
@@ -40,8 +38,6 @@ class Genre(AbstractItem):
     date: 2020-03-17
     """
 
-    objects = managers.CustomManager()
-
     def __str__(self):
         return f"{self.name}"
 
@@ -53,8 +49,6 @@ class Position(AbstractItem):
     des: 음악 역량
     date: 2020-03-17
     """
-
-    objects = managers.CustomManager()
 
     def __str__(self):
         return f"{self.name}"

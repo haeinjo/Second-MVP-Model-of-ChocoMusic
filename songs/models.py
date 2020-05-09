@@ -64,10 +64,22 @@ class Song(core_models.TimeStamppedModel):
     """
 
     base_song = models.ForeignKey(
-        "BaseSong", on_delete=models.CASCADE, related_name="covered_songs", default=None
+        "BaseSong", on_delete=models.CASCADE, related_name="songs", default=None
     )  # BaseSong에 등록되어있지 않은 커버곡을 업로드할 경우 업로드되는 곡에 대한 정보가 BaseSong에 저장되어야 된다.
+    composer = models.ForeignKey(
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="composed_songs",
+        default=None,
+    )
+    lyricist = models.ForeignKey(
+        "users.User", on_delete=models.CASCADE, related_name="lyric_songs", default=None
+    )
     project = models.ForeignKey(
-        "projects.Project", on_delete=models.CASCADE, related_name="covered_songs"
+        "projects.Project", on_delete=models.CASCADE, related_name="songs"
+    )
+    genre = models.ForeignKey(
+        "core.Genre", on_delete=models.CASCADE, related_name="songs", default=None
     )
     is_covered = models.BooleanField(default=False)
 

@@ -4,6 +4,7 @@ from django.contrib.admin.utils import flatten
 from django_seed import Seed
 from projects import models as project_models
 from teams import models as team_models
+from users import models as user_models
 
 
 class Command(BaseCommand):
@@ -44,7 +45,10 @@ class Command(BaseCommand):
 
         for project in created_projects:
             project = project_models.Project.objects.get(pk=project)
-            participants = project.team.users.random_records()
+            users_cnt = user_models.User.objects.filter(teams=project.team).count()
+            participants = project.team.users.order_by("?").all()[
+                : random.randint(1, users_cnt)
+            ]
             for participant in participants:
                 project.participants.add(participant)
             project.save()

@@ -27,35 +27,64 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         number = options.get("number")
         seeder = Seed.seeder()
-        base_songs = song_models.BaseSong.objects.all()
         projects = project_models.Project.objects.all()
+        genres = core_models.Genre.objects.all()
 
         seeder.add_entity(
             song_models.Song,
             number,
             {
-                "base_song": lambda x: random.choice(base_songs),
+                "base_song": lambda x: song_models.BaseSong.objects.first(),
+                "composer": lambda x: user_models.User.objects.first(),
+                "lyricist": lambda x: user_models.User.objects.first(),
                 "project": lambda x: random.choice(projects),
+                "genre": lambda x: random.choice(genres),
+                "is_covered": lambda x: random.choice([True, False]),
             },
         )
 
         created_songs = seeder.execute()
         created_songs = flatten(list(created_songs.values()))
 
-        positions = core_models.Position.objects.random_records()
         for song in created_songs:
             song = song_models.Song.objects.get(pk=song)
+            participants = user_models.User.objects.filter(projects=song.project)
+            participants_cnt = participants.count()
+            song.composer = random.choice(participants)
+            song.lyricist = random.choice(participants)
+            base_song = song_models.BaseSong.objects.create(
+                title=seeder.faker.word(),
+                composer=song.composer.email,
+                lyricist=song.lyricist.email,
+            )
+            positions_cnt = core_models.Position.objects.exclude(name="보컬").count()
+            positions = core_models.Position.objects.order_by("?").exclude(name="보컬")[
+                : random.randint(1, positions_cnt)
+            ]
             for position in positions:
-                role = song_models.Role.objects.create(position=position, song=song,)
-                user_number = user_models.User.objects.count()
-                random_number = random.randint(1, min(3, user_number))
-                users = user_models.User.objects.filter(projects=song.project).order_by(
-                    "?"
-                )[:random_number]
-                
-                for user in users:
-                    role.users.add(user)
+                role = song_models.Role.objects.create(position=position, song=song)
 
+                participants_ = participants.order_by("?").all()[
+                    : random.randint(1, participants_cnt)
+                ]
+                for participant in participants_:
+                    role.users.add(participant)
                 role.save()
+
+            role = song_models.Role.objects.create(
+                position=core_models.Position.objects.get(name="보컬"), song=song
+            )
+            participants_ = participants.order_by("?").all()[
+                : random.randint(1, min(2, participants_cnt))
+            ]
+            participant_list = []
+            for participant in participants_:
+                participant_list.append(participant.email)
+                role.users.add(participant)
+            role.save()
+            base_song.singer = ", ".join(participant_list)
+            base_song.save()
+            song.base_song = base_song
+            song.save()
 
         self.stdout.write(self.style.SUCCESS(f"{number} songs and roles created!"))

@@ -47,7 +47,14 @@ class SongAdmin(admin.ModelAdmin):
     date: 2020-04-22
     """
 
-    list_display = ("project", "base_song", "is_covered")
+    list_display = (
+        "project",
+        "genre",
+        "composer",
+        "lyricist",
+        "base_song",
+        "is_covered",
+    )
 
     inlines = [
         RoleInline,
@@ -55,7 +62,8 @@ class SongAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ("By", {"fields": ("project",)}),
-        ("Song Info", {"fields": ("base_song",)}),
+        ("Made by", {"fields": ("composer", "lyricist")}),
+        ("Song Info", {"fields": ("base_song", "genre__name")}),
     )
     search_fields = (
         "base_song__title",

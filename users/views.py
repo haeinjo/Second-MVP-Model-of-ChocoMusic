@@ -92,7 +92,12 @@ def kakao_callback(request):
                     )
 
                 login(request, new_user)
-                return redirect(reverse("core:home"))
+                if new_user.positions.count() == 0:
+                    return redirect(
+                        reverse("users:fst_edit", kwargs={"alias": new_user.alias})
+                    )
+                else:
+                    return redirect(reverse("core:home"))
     except KakaoException:
         return redirect(reverse("core:home"))
 
@@ -100,7 +105,7 @@ def kakao_callback(request):
 def first_edit(request, alias):
 
     if request.method == "GET":
-        form = user_forms.MusicianInfoForm()
+        form = user_forms.MusicianInfoForm(request.GET)
         return render(request, "users/fst_edit.html", {"form": form})
     else:
         user = user_models.User.objects.get(alias=alias)

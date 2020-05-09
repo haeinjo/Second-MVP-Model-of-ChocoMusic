@@ -47,13 +47,19 @@ class Command(BaseCommand):
 
         for pk in created_users:
             user = user_models.User.objects.get(pk=pk)
+            positions_cnt = core_models.Position.objects.count()
+            positions = core_models.Position.objects.order_by("?").all()[
+                : random.randint(1, positions_cnt / 2)
+            ]
             for position in positions:
-                if random.randint(1, 4) > 2:
-                    user.positions.add(position)
+                user.positions.add(position)
 
+            genres_cnt = core_models.Genre.objects.count()
+            genres = core_models.Genre.objects.order_by("?").all()[
+                : random.randint(1, genres_cnt / 2)
+            ]
             for genre in genres:
-                if random.randint(1, 4) > 2:
-                    user.genres.add(genre)
+                user.genres.add(genre)
 
             user.save()
 

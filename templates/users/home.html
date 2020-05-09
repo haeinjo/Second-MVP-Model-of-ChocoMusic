@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+{{ user.alias }}님 환영 합니다. 
+{% endblock page_title %}
+
+{% block content %}
+{% for p_song in p_songs %}
+<div>{{p_song}}</div>
+{% endfor %}
+{% endblock %}
