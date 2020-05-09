@@ -25,7 +25,7 @@ class User(AbstractUser):
     address = models.CharField(max_length=128)
     bio = models.TextField(default="")
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES)  # choice 항목 상의
-    avatar = models.ImageField()
+    avatar = models.ImageField(upload_to="user-profile")
     birthdate = models.DateField(blank=True, null=True)
     positions = models.ManyToManyField(
         "core.Position", related_name="users", blank=True

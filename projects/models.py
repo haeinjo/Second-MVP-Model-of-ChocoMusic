@@ -13,7 +13,7 @@ class Project(core_models.TimeStamppedModel):
 
     title = models.CharField(max_length=128)
     description = models.TextField()
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to="project-jacket")
     team = models.ForeignKey(
         "teams.Team", on_delete=models.CASCADE, related_name="projects"
     )

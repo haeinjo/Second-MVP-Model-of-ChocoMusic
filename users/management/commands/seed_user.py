@@ -49,14 +49,14 @@ class Command(BaseCommand):
             user = user_models.User.objects.get(pk=pk)
             positions_cnt = core_models.Position.objects.count()
             positions = core_models.Position.objects.order_by("?").all()[
-                : random.randint(1, positions_cnt / 2)
+                : random.randint(1, int(positions_cnt / 2))
             ]
             for position in positions:
                 user.positions.add(position)
 
             genres_cnt = core_models.Genre.objects.count()
             genres = core_models.Genre.objects.order_by("?").all()[
-                : random.randint(1, genres_cnt / 2)
+                : random.randint(1, int(genres_cnt / 2))
             ]
             for genre in genres:
                 user.genres.add(genre)
