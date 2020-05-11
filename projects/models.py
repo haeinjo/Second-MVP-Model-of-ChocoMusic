@@ -21,3 +21,9 @@ class Project(core_models.TimeStamppedModel):
 
     def __str__(self):
         return f"{self.team.name} - {self.title}"
+
+    def jacket_photo(self):
+        try:
+            return self.photo.url
+        except ValueError:
+            return None

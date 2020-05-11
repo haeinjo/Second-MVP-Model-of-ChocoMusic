@@ -1,11 +1,40 @@
 {% extends 'base.html' %}
 
 {% block page_title %}
-{{ user.alias }}님 환영 합니다. 
+{{ user.alias }}님 환영 합니다.
 {% endblock page_title %}
 
-{% block content %}
+{% block main %}
+<div class="main-l">
+    <div class="main-l-1">
+        <p class="banner-promotion">배너 / 프로모션 페이지</p>
+    </div>
+    <div>
+        <p class="main-l-2-title">최신앨범</p>
+        <div class="main-l-2">
+            {% for song in p_songs %}
+            <div class="main-l-2-card">
+                <a href="#">
+                    <div style="background-image: url({{song.project.jacket_photo}})" class="main-l-2-card-img"></div>
+                    <div class="main-l-2-card-inf-1">
+                        <span>{{song.base_song.title}}</span>
+                    </div>
+                    <div>
+                        <span>{{song.project.team.name}} / {{song.project}}</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="main-r">
+
+</div>
+<div>
+    <h1>노래 목록</h1>
+</div>
 {% for p_song in p_songs %}
-<div>{{p_song}}</div>
+<div>{{p_song.base_song.title}} {{p_song.lyricist}}</div>
 {% endfor %}
 {% endblock %}

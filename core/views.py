@@ -19,8 +19,12 @@ def home_view(request):
             p_songs = []
             for position in positions:
                 for genre in genres:
-                    songs = song_models.Song.objects.filter(roles__position=position).filter()
+                    songs = song_models.Song.objects.filter(
+                        roles__position=position
+                    ).filter(genre=genre)
                     p_songs += list(songs)
+            p_songs = p_songs[0:4]
+
             return render(
                 request, "users/home.html", {"user": user, "p_songs": p_songs}
             )

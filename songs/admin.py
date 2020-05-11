@@ -63,9 +63,10 @@ class SongAdmin(admin.ModelAdmin):
     fieldsets = (
         ("By", {"fields": ("project",)}),
         ("Made by", {"fields": ("composer", "lyricist")}),
-        ("Song Info", {"fields": ("base_song", "genre__name")}),
+        ("Song Info", {"fields": ("base_song", "genre")}),
     )
     search_fields = (
+        "project__title",
         "base_song__title",
         "base_song__composer",
         "base_song__lyricist",

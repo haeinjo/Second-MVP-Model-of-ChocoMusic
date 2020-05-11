@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base/nav.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/main.css' %}">
     <title>
         {% block page_title %}
         {% endblock page_title %}
@@ -13,40 +14,41 @@
 </head>
 
 <body>
-    <header>
+    <header class="container">
         {% block header %}
-            <div class="nav">
-                <div>
-                    {% if user is not None %}
-                    <a href="{% url 'core:home' %}" class="nav-logo">
+        <div class="nav">
+            <div>
+                {% if user is not None %}
+                <a href="{% url 'core:home' %}" class="nav-logo">
                     {% else %}
                     <a href="{% url 'core:intro' %}" class="nav-logo">
-                    {% endif %}
+                        {% endif %}
                         <span><img src="{% static 'img/logo.png' %}" class="img-logo">CHOCO MUSIC</span>
                     </a>
-                </div>
-                <div>
-                    <ul class="nav-menu">
-                        <li><a href="#">Band-in</a></li>
-                        <li><a href="#">크라우드 펀딩</a></li>
-                        {% block search_bar %}
-                        <form methoed="get" action={% url 'core:home' %}>
-                        <input name="search_thing" palceholder="검색">
-                        </form>
-                        {% endblock search_bar %}
-                        <li><a href="#">알림</a></li>
-                        <li><a href="#">메세지</a></li>
-                        <li><a href="#">프로필</a></li>
-                    </ul>
-                </div>
             </div>
+            <div>
+                <ul class="nav-menu">
+                    <li><a href="#">Band-in</a></li>
+                    <li><a href="#">크라우드 펀딩</a></li>
+                    <li><select id="optional-menu">
+                        </select></li>
+                    {% block search_bar %}
+                    <form methoed="get" action={% url 'core:home' %}>
+                        <input name="search_thing" palceholder="검색">
+                    </form>
+                    {% endblock search_bar %}
+                    <li><a href="#" class="sub-menu">업로드</a></li>
+                    <li><a href="#" class="sub-menu">프로필</a></li>
+                    <li><a href="#" class="sub-menu">알림</a></li>
+                    <li><a href="#" class="sub-menu">더보기</a></li>
+                </ul>
+            </div>
+        </div>
         {% endblock header %}
     </header>
-    <main>
-        <div>
-            {% block content %}
-            {% endblock content %}
-        </div>
+    <main class="container">
+        {% block main %}
+        {% endblock main %}
     </main>
     <footer>
         &copy; 2020 Choco Music

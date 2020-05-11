@@ -1,0 +1,56 @@
+.main-l {
+    width: 70%;
+    margin-left: 0;
+}
+
+.main-r {
+    width: 30%;
+}
+
+.main-l-1 {
+    width: 90%;
+    height: 200px;
+    margin-bottom: 30px;
+    border: solid 1px gray;
+}
+
+.main-l-2 {
+    display: flex;
+    width: 90%;
+    overflow-x: hidden;
+    align-items: stretch;
+}
+
+.main-l-2-title {
+    font-weight: bold;
+    font-size: 20px;
+    color: gray;
+}
+
+.main-l-2-card {
+    width: 1700px;
+    overflow: hidden;
+}
+
+.main-l-2-card-img{
+    width: 170px;
+    height: 170px;
+    background-size: cover;
+    background-position: center center;
+}
+
+.main-l-2-card-inf-1{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 17px;
+    color: black;
+}
+
+/* 삭제해야함 */
+.banner-promotion {
+    text-align: center;
+    position: relative;
+    top: 36%;
+    font-weight: bold;
+    font-size: 20px;
+}
