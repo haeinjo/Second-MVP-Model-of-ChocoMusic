@@ -1,5 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\godls\\.virtualenvs\\Second-MVP-Model-of-ChocoMusic-ShSUdaSA\\Scripts\\python.exe",
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.formatting.provider": "black",
@@ -7,4 +6,5 @@
     "python.linting.flake8Args": [
         "--max-line-length=88"
     ],
+    "python.pythonPath": "C:\\Users\\Samsung\\.virtualenvs\\Second-MVP-Model-of-ChocoMusic-19fCVYOg\\Scripts\\python.exe",
 }

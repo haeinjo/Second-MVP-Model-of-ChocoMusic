@@ -1,0 +1,17 @@
+body {
+    font-size: 14px;
+    overflow-y: scroll;
+    min-width: 320px;
+    background: #f1f4f6;
+    color: #282c32;
+    font-family: Source Sans Pro,Helvetica Neue,Helvetica,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1100px!important;
+}

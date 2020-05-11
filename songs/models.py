@@ -76,7 +76,7 @@ class Song(core_models.TimeStamppedModel):
         "users.User", on_delete=models.CASCADE, related_name="lyric_songs", default=None
     )
     project = models.ForeignKey(
-        "projects.Project", on_delete=models.CASCADE, related_name="songs"
+        "projects.Project", on_delete=models.CASCADE, related_name="songs", default=None
     )
     genre = models.ForeignKey(
         "core.Genre", on_delete=models.CASCADE, related_name="songs", default=None

@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
     <title>
         {% block page_title %}
         {% endblock page_title %}
@@ -14,22 +15,19 @@
 <body>
     <header>
         {% block header %}
-            <div>
+            <div class="nav">
                 <div>
                     {% if user is not None %}
-                    <a href="{% url 'core:home' %}">
+                    <a href="{% url 'core:home' %}" class="nav-logo">
                     {% else %}
-                    <a href="{% url 'core:intro' %}">
+                    <a href="{% url 'core:intro' %}" class="nav-logo">
                     {% endif %}
-
-                        <img src="{% static 'img/logo.png' %}">
-                        <span>Choco Music</span>
+                        <span><img src="{% static 'img/logo.png' %}" class="img-logo">CHOCO MUSIC</span>
                     </a>
                 </div>
                 <div>
-                    <ul>
-                        <li><a href="#">컨텐츠</a></li>
-                        <li><a href="#">협업</a></li>
+                    <ul class="nav-menu">
+                        <li><a href="#">Band-in</a></li>
                         <li><a href="#">크라우드 펀딩</a></li>
                         {% block search_bar %}
                         <form methoed="get" action={% url 'core:home' %}>
@@ -44,10 +42,12 @@
             </div>
         {% endblock header %}
     </header>
-    <div>
-        {% block content %}
-        {% endblock content %}
-    </div>
+    <main>
+        <div>
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </main>
     <footer>
         &copy; 2020 Choco Music
     </footer>

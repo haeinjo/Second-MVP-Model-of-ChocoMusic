@@ -11,9 +11,7 @@ def home_view(request):
     login_user = request.user
 
     user = user_models.User.objects.get(email=login_user)
-    print(user.email)
     positions = user.positions.all()
-    print(positions)
     genres = user.genres.all()
 
     if request.method == "GET":
@@ -23,8 +21,6 @@ def home_view(request):
                 for genre in genres:
                     songs = song_models.Song.objects.filter(roles__position=position).filter()
                     p_songs += list(songs)
-
-            print(p_songs)
             return render(
                 request, "users/home.html", {"user": user, "p_songs": p_songs}
             )
