@@ -1,5 +1,6 @@
 from django.db import models
 from core import models as core_models
+from projects import models as project_models
 
 
 class ListCategory(core_models.TimeStamppedModel):
@@ -39,3 +40,8 @@ class PlayList(core_models.TimeStamppedModel):
 
     def __str__(self):
         return f"{self.title} - {self.description}"
+
+    def first_song_photo(self):
+        song = self.songs.all()[:1]
+        project = project_models.Project.objects.get(songs=song)
+        return project.photo

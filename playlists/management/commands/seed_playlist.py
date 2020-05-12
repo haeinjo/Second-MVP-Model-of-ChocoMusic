@@ -34,19 +34,22 @@ class Command(BaseCommand):
             playlist_models.PlayList,
             number,
             {
-                "description": lambda x: seeder.faker.paragraphs(),
-                "category": lambda x: random.choice(
-                    playlist_models.ListCategory.objects.all()
-                ),
-                "user": lambda x: random.choice(user_models.User.objects.all()),
+                "description": lambda x: seeder.faker.sentence(),
+                "category": lambda x: playlist_models.ListCategory.objects.order_by(
+                    "?"
+                ).first(),
+                "user": lambda x: user_models.User.objects.order_by("?").first(),
             },
         )
 
         created_lists = seeder.execute()
         created_lists = flatten(list(created_lists.values()))
 
-        for l in created_lists:
-            created_list = playlist_models.PlayList.objects.get(pk=l)
+        for li in created_lists:
+            created_list = playlist_models.PlayList.objects.get(pk=li)
+            category = created_list.category
+            category.used = True
+            category.save()
             song_cnt = song_models.Song.objects.count()
             random_number = random.randint(min(2, song_cnt), min(50, song_cnt))
 
