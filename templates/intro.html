@@ -8,6 +8,9 @@ Welcome to ChocoMusic
 
 {% block header %}
 {% include 'partials/nav_pre.html' %}
+{% endblock header %}
+
+{% block main %}
 <h1>간략한 한마디</h1>
 <div>
     <a href="{% url 'users:naver_login' %}">네이버계정 로그인</a>
@@ -18,4 +21,4 @@ Welcome to ChocoMusic
     <a href="#">회원가입</a>
     <a href="#">로그인</a>
 </div>
-{% endblock header %}
+{% endblock main %}

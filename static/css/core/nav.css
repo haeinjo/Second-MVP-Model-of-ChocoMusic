@@ -36,6 +36,13 @@
     font-weight: 600;
 }
 
+.nav-pre-menu {
+    display: flex;
+    align-items: center;
+    width:100%;
+    justify-content: flex-end;
+}
+
 .nav-menu-1 {
     display: flex;
     align-items: center;

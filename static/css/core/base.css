@@ -27,3 +27,14 @@ li {
     flex-direction: row;
     flex-flow: row wrap;
 }
+
+.footer {
+    border-top: 1px solid #C1C1C4;
+    padding-top: 80px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 150px;
+    margin-top: 150px;
+}

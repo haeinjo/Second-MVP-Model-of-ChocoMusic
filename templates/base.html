@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base/nav.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/core/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/main.css' %}">
     <link href=f"https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <title>
@@ -53,8 +53,8 @@
         {% block main %}
         {% endblock main %}
     </main>
-    <footer>
-        &copy; 2020 Choco Music
+    <footer class="container footer">
+        {% include 'partials/footer.html' %}
     </footer>
 </body>
 
