@@ -30,7 +30,7 @@
     <div>
         <p class="main-l-3-title">인기 플레이 리스트</p>
         <div class="main-l-3">
-            {% for genre, category in playlists.values, categories %}
+            {% for category, genre in playlists.items %}
             <div class="main-l-3-card">
                 <a href="#">
                     <div class="main-l-3-card-img">
@@ -39,7 +39,7 @@
                         {% endfor %}
                     </div>
                     <div class="main-l-3-card-inf-1">
-                        <span>{{category.title}}</span>
+                        <span>{{category}}</span>
                     </div>
                 </a>
             </div>

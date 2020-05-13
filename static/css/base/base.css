@@ -3,17 +3,26 @@ body {
     overflow-y: scroll;
     min-width: 320px;
     background: #f1f4f6;
-    color: #282c32;
+    color: #75737B;
     font-family: Source Sans Pro,Helvetica Neue,Helvetica,sans-serif,Apple Color Emoji,Segoe UI Emoji;
     line-height: 1;
     margin: 0;
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+    color: #75737B;
+}
+
+li {
+    list-style-type: none;
+}
+
 .container {
     margin: 0 auto;
     padding: 0;
-    max-width: 1100px!important;
+    max-width: 1626px!important;
     display: flex;
     flex-direction: row;
     flex-flow: row wrap;

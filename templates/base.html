@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/base/nav.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/main.css' %}">
+    <link href=f"https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <title>
         {% block page_title %}
         {% endblock page_title %}
@@ -17,32 +18,34 @@
     <header class="container">
         {% block header %}
         <div class="nav">
-            <div>
+            <div class="nav-logo">
                 {% if user is not None %}
-                <a href="{% url 'core:home' %}" class="nav-logo">
-                    {% else %}
-                    <a href="{% url 'core:intro' %}" class="nav-logo">
-                        {% endif %}
-                        <span><img src="{% static 'img/logo.png' %}" class="img-logo">CHOCO MUSIC</span>
-                    </a>
+                    <a href="{% url 'core:home' %}">
+                {% else %}
+                    <a href="{% url 'core:intro' %}">
+                {% endif %}
+                <img src="{% static 'img/testlogo2.png' %}">
+                </a>
             </div>
-            <div>
-                <ul class="nav-menu">
-                    <li><a href="#">Band-in</a></li>
-                    <li><a href="#">크라우드 펀딩</a></li>
-                    <li><select id="optional-menu">
-                        </select></li>
-                    {% block search_bar %}
-                    <form methoed="get" action={% url 'core:home' %}>
-                        <input name="search_thing" palceholder="검색">
-                    </form>
-                    {% endblock search_bar %}
-                    <li><a href="#" class="sub-menu">업로드</a></li>
-                    <li><a href="#" class="sub-menu">프로필</a></li>
-                    <li><a href="#" class="sub-menu">알림</a></li>
-                    <li><a href="#" class="sub-menu">더보기</a></li>
-                </ul>
-            </div>
+            <ul class="nav-menu">
+                <div class="nav-menu-1">
+                <li><a href="#">Band-in</a></li>
+                <li>/</li>
+                <li><a href="#">Funding</a></li>
+                </div>
+                {% block search_bar %}
+                <div class="nav-searchbar">
+                    <input name="search_thing" placeholder="검색" style="background-image: url({% static 'img/menu-img/ionic-ios-search@2x.png' %})">
+                </div>
+                {% endblock search_bar %}
+                <div class="nav-menu-2">
+                <li><a href="#"><img src="{% static 'img/menu-img/upload.png'%}" class="nav-menu-2-upload"></a></li>
+                <li><a href="#"><img src="{% static 'img/menu-img/library@2x.png' %}" class="nav-menu-2-icon"></a></li>
+                <li><a href="#"><img src="{% static 'img/menu-img/alram@2x.png' %}" class="nav-menu-2-icon"></a></li>
+                <li><a href="#"><img src="{% static 'img/menu-img/chat@2x.png' %}" class="nav-menu-2-icon"></a></li>
+                <li><a href="#"><img src="{% static 'img/menu-img/user-circle@2x.png' %}" id="nav-menu-2-profile"></a></li>
+                </div>
+            </ul>
         </div>
         {% endblock header %}
     </header>
