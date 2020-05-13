@@ -10,7 +10,6 @@ from . import forms as user_forms
 def kakao_login(request):
 
     app_key = os.environ.get("KAKAO_ID")
-    print(app_key)
     redirect_uri = f"http://127.0.0.1:8000/users/login/kakao/callback/"
 
     return redirect(
@@ -19,10 +18,12 @@ def kakao_login(request):
 
 
 class KakaoException(Exception):
+
     pass
 
 
 def kakao_callback(request):
+
     try:
         error = request.GET.get("error")
 
@@ -100,6 +101,52 @@ def kakao_callback(request):
                     return redirect(reverse("core:home"))
     except KakaoException:
         return redirect(reverse("core:home"))
+
+
+def naver_login(request):
+
+    client_id = os.environ.get("NAVER_ID")
+    redirect_uri = "http://127.0.0.1:8000/users/login/naver/callback/"
+    state = os.environ.get("NAVER_STATE")
+    return redirect(
+        f"https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id={client_id}&redirect_uri={redirect_uri}&state={state}"
+    )
+
+
+class NaverException(Exception):
+
+    pass
+
+
+def naver_callback(request):
+
+    try:
+        grant_type = "authorization_code"
+        client_id = os.environ.get("NAVER_ID")
+        client_secret = os.environ.get("NAVER_SECRET")
+        code = request.GET.get("code")
+        state = os.environ.get("NAVER_STATE")
+
+        data = {
+            "grant_type": grant_type,
+            "client_id": client_id,
+            "client_secret": client_secret,
+            "code": code,
+            "state": state,
+        }
+
+        token_request = requests.post("https://nid.naver.com/oauth2.0/token", data=data)
+        token_json = token_request.json()
+
+        access_token = token_json.get("access_token")
+        headers = {"Authorization": f"Bearer {access_token}"}
+        naver_request = requests.post(
+            "https://openapi.naver.com/v1/nid/me", headers=headers
+        )
+        naver_json = naver_request.json()
+        print(naver_json)
+    except NaverException():
+        pass
 
 
 def first_edit(request, alias):

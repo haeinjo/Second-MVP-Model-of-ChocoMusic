@@ -10,7 +10,7 @@ Welcome to ChocoMusic
 {% include 'partials/nav_pre.html' %}
 <h1>간략한 한마디</h1>
 <div>
-    <a href="#">페이스북계정 로그인</a>
+    <a href="{% url 'users:naver_login' %}">네이버계정 로그인</a>
     <a href="{% url 'users:kakao_login' %}">카카오톡계정 로그인</a>
     <a href="#">구글아이디 로그인</a>
 </div>
