@@ -1,11 +1,40 @@
-.nav {
+.nav-container {
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+}
+
+.logo-underline {
+    width: 12%;
+    height: 4px;
+    background-color: orange;
+    position: absolute;
+    top: 77px;
+    border-radius: 4px;
+}
+
+.nav-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 80px;
+    background-color: white;
     border-bottom: solid 1px #C1C1C4;
-    margin-bottom: 50px;
+    box-shadow: 0 6px 5px -5px #C1C1C4;
+}
+
+.nav {
+    width: 100%;
+    height: 70px;
+    border-bottom: solid 1px #C1C1C4;
+    margin-bottom: 20px;
     align-items: center;
     display: flex;
     box-shadow: 0 6px 5px -5px #C1C1C4;
+    padding-bottom: 8px;
+    margin-top: 2px;
+    background-color: white;
 }
 
 .nav-logo {
@@ -13,10 +42,10 @@
     width: 15%;
     height: 70;
     display: flex;
-    border-bottom: 4px solid orange;
     border-radius: 2px;
     padding-top: 10px;
 }
+
 
 .nav-logo img {
     width: 223px;
@@ -44,29 +73,32 @@
 }
 
 .nav-menu-1 {
+    padding-top: 6px;   
     display: flex;
     align-items: center;
-    width: 40%;
+    width: 42%;
 }
 
 .nav-searchbar {
     display: flex;
     padding-top: 27px;
-    width: 30%;
+    width: 32%;
+    justify-content: flex-end;
+    padding-right: 56px;
 }
 
 .nav-searchbar > input {
     height:35px;
     border-radius: 7px;
-    border: solid 1px orange;
+    border: solid 1px #CACAD1;
     width:336px;
 
     padding: 12px 24px;
     transition: transform 250ms ease-in-out;
     font-size: 14px;
     line-height: 18px;
-    color: #575756;
-    background-color: #CACAD1;
+    color: #8A8A8B;
+    background-color: #E7E7E8;
     background-repeat: no-repeat;
     background-size: 18px 18px;
     background-position: 95% center;
@@ -93,13 +125,14 @@
 
 .nav-menu-2 {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    width: 30%;
+    width: 26%;
 }
 
 .nav-menu-2-upload {
-    width: 107px;
-    height: 40px;
+    width: 65px;
+    height: 35px;
 }
 
 .nav-menu-2-icon {

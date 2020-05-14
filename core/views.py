@@ -25,7 +25,7 @@ def home_view(request):
                         roles__position=position
                     ).filter(genre=genre)
                     p_songs += list(songs)
-            p_songs = p_songs[0:4]
+            p_songs = p_songs[0:5]
 
             categories = playlist_models.ListCategory.objects.all()
             playlists = {}
@@ -35,14 +35,18 @@ def home_view(request):
                         category=category
                     ).only("songs")[:4]
 
+            teams = user.teams.all()
+            projects = user.projects.all()
+
             return render(
                 request,
                 "users/home.html",
                 {
                     "user": user,
                     "p_songs": p_songs,
-                    "categories": categories,
                     "playlists": playlists,
+                    "teams": teams,
+                    "projects": projects,
                 },
             )
 

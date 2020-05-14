@@ -16,7 +16,7 @@ class Team(core_models.TimeStamppedModel):
     active_region = models.CharField(max_length=256)
     positions = models.ManyToManyField("core.Position")
     genres = models.ManyToManyField("core.Genre")
-    avatar = models.ImageField()
+    avatar = models.ImageField(upload_to="team-profile")
     is_solo = models.BooleanField()
     # bestSong = models.ForeignKey(SongInfo...)   SongInfo 구현 필요
 

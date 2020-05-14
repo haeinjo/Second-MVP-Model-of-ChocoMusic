@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block page_title %}
 {{ user.alias }}님 환영 합니다.
 {% endblock page_title %}
@@ -7,9 +7,24 @@
 {% block main %}
 <div class="main-l">
     <div class="main-l-1">
-        <p class="banner-promotion">배너 / 프로모션 페이지</p>
+        <p class="main-l-1-title">{{user.alias}}님을 위한 추천 곡</p>
+        <div class="main-l-1-content">
+            {% for song in p_songs %}
+            <div class="main-l-1-card">
+                <a href="#">
+                    <div style="background-image: url({{song.project.jacket_photo}})" class="main-l-1-card-img"></div>
+                    <div class="main-l-1-card-inf-1">
+                        <span>{{song.project.title}}</span>
+                    </div>
+                    <div>
+                        <span>{{song.composer.alias}}</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    <div>
+    <!--  <div>
         <p class="main-l-2-title">최신앨범</p>
         <div class="main-l-2">
             {% for song in p_songs %}
@@ -26,8 +41,8 @@
             </div>
             {% endfor %}
         </div>
-    </div>
-    <div>
+    </div> -->
+    <!-- <div>
         <p class="main-l-3-title">인기 플레이 리스트</p>
         <div class="main-l-3">
             {% for category, genre in playlists.items %}
@@ -35,7 +50,8 @@
                 <a href="#">
                     <div class="main-l-3-card-img">
                         {% for playlist in genre %}
-                            <div style="background-image: url({{playlist.first_song_photo.url}})" class="main-l-3-card-img-part"></div>
+                        <div style="background-image: url({{playlist.first_song_photo.url}})"
+                            class="main-l-3-card-img-part"></div>
                         {% endfor %}
                     </div>
                     <div class="main-l-3-card-inf-1">
@@ -45,23 +61,46 @@
             </div>
             {% endfor %}
         </div>
-    </div>
+    </div> -->
 </div>
 <div class="main-r">
     <div class="main-r-1">
-        <div class="main-r-1-btn1"><span>차트</span></div>
-        <div class="main-r-1-btn2"><span>실시간 피드</span></div>
-        <div class="main-r-1-contents"></div>
+        <div style="background-image:url({{user.avatar.url}})" class="main-r-1-avatar">
+        </div>
+        <div class="main-r-1-profile">
+            <div>{{user.first_name}}</div>
+        </div>
+        <div class="main-r-1-content-bg">
+            <div class="main-r-1-team">
+                <div class="main-r-1-team-head">
+                    <div style="background-image: url({% static 'img/side-img/group.png' %})"></div>
+                    <span>팀</span>
+                </div>
+                <div class="main-r-1-team-body">
+                    {% for team in teams %}
+                    <div class="main-r-1-team-card">
+                        <div class="main-r-1-team-img" style="background-image:url({{team.avatar.url}})"></div>
+                        <div class="main-r-1-team-name"><span>{{team.name}}</span></div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="main-r-1-project">
+                <div class="main-r-1-project-head">
+                    <div style="background-image: url({% static 'img/side-img/group.png' %})"></div>
+                    <span>프로젝트</span>
+                </div>
+                <div class="main-r-1-project-body">
+                    {% for project in projects %}
+                    <div class="main-r-1-project-card">
+                        <div class="main-r-1-project-img" style="background-image:url({{project.photo.url}})"></div>
+                        <div class="main-r-1-project-name"><span>{{project.title}}</span></div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="main-r-2">
-        <div class="main-r-2-btn1"><span>패 프로젝트</span></div>
-        <div class="main-r-2-btn2"><span>내 팀</span></div>
-        <div class="main-r-2-contents"></div>
-    </div>
-    <div class="main-r-3">
-        <div class="main-r-3-btn1"><span>팔로잉</span></div>
-        <div class="main-r-3-btn2"><span>뮤지션 추천</span></div>
-        <div class="main-r-3-contents"></div>
-    </div>
+
 </div>
 {% endblock %}

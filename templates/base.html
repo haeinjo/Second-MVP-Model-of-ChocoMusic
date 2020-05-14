@@ -15,8 +15,10 @@
 </head>
 
 <body>
+    <div class="nav-bg"><div>
     <header class="container">
         {% block header %}
+        <div class="nav-container">
         <div class="nav">
             <div class="nav-logo">
                 {% if user is not None %}
@@ -39,7 +41,7 @@
                 </div>
                 {% endblock search_bar %}
                 <div class="nav-menu-2">
-                <li><a href="#"><img src="{% static 'img/menu-img/upload.png'%}" class="nav-menu-2-upload"></a></li>
+                <li><a href="#"><img src="{% static 'img/menu-img/upload@2x.png'%}" class="nav-menu-2-upload"></a></li>
                 <li><a href="#"><img src="{% static 'img/menu-img/library@2x.png' %}" class="nav-menu-2-icon"></a></li>
                 <li><a href="#"><img src="{% static 'img/menu-img/alram@2x.png' %}" class="nav-menu-2-icon"></a></li>
                 <li><a href="#"><img src="{% static 'img/menu-img/chat@2x.png' %}" class="nav-menu-2-icon"></a></li>
@@ -47,6 +49,9 @@
                 </div>
             </ul>
         </div>
+        <div class="logo-underline"></div>
+        <div class="topline"></div>
+        <div>
         {% endblock header %}
     </header>
     <main class="container">

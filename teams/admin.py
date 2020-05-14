@@ -23,7 +23,16 @@ class TeamAdmin(admin.ModelAdmin):
         ("Member", {"fields": ("users",)}),
         (
             "Team Info",
-            {"fields": ("name", "active_region", "is_solo", "positions", "genres")},
+            {
+                "fields": (
+                    "avatar",
+                    "name",
+                    "active_region",
+                    "is_solo",
+                    "positions",
+                    "genres",
+                )
+            },
         ),
     )
 
