@@ -11,13 +11,16 @@ class Team(core_models.TimeStamppedModel):
     date: 2020-03-17
     """
 
-    users = models.ManyToManyField("users.User", related_name="teams")
+    members = models.ManyToManyField("users.User", related_name="teams")
+    leader = models.ForeignKey(
+        "users.User", related_name="chef_teams", on_delete=models.SET_NULL, null=True
+    )
     name = models.CharField(max_length=128)
     active_region = models.CharField(max_length=256)
-    positions = models.ManyToManyField("core.Position")
     genres = models.ManyToManyField("core.Genre")
     avatar = models.ImageField(upload_to="team-profile")
-    is_solo = models.BooleanField()
+    bio = models.TextField(default="", blank=True)
+    is_solo = models.BooleanField(default="True")
     # bestSong = models.ForeignKey(SongInfo...)   SongInfo 구현 필요
 
     def __str__(self):

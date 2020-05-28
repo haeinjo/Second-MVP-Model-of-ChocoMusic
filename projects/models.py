@@ -13,17 +13,9 @@ class Project(core_models.TimeStamppedModel):
 
     title = models.CharField(max_length=128)
     description = models.TextField()
-    photo = models.ImageField(upload_to="project-jacket")
     team = models.ForeignKey(
         "teams.Team", on_delete=models.CASCADE, related_name="projects"
     )
-    participants = models.ManyToManyField("users.User", related_name="projects")
 
     def __str__(self):
         return f"{self.team.name} - {self.title}"
-
-    def jacket_photo(self):
-        try:
-            return self.photo.url
-        except ValueError:
-            return None

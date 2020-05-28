@@ -20,7 +20,7 @@ class TeamAdmin(admin.ModelAdmin):
     )
 
     fieldsets = (
-        ("Member", {"fields": ("users",)}),
+        ("Member", {"fields": ("members",)}),
         (
             "Team Info",
             {
@@ -28,8 +28,8 @@ class TeamAdmin(admin.ModelAdmin):
                     "avatar",
                     "name",
                     "active_region",
+                    "bio",
                     "is_solo",
-                    "positions",
                     "genres",
                 )
             },
@@ -38,6 +38,6 @@ class TeamAdmin(admin.ModelAdmin):
 
     list_filter = ("is_solo",)
 
-    search_fields = ("name", "users__email", "genres__name", "positions__name")
+    search_fields = ("name", "members__email", "genres__name", "positions__name")
 
-    filter_horizontal = ("users", "positions", "genres")
+    filter_horizontal = ("members", "genres")

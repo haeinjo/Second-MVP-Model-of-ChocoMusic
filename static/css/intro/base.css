@@ -1,0 +1,222 @@
+.bg-intro {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center, center;
+    /* box-shadow: 0 6px 10px -10px white; */
+}
+
+.icontainer {
+    height: 100%;
+    flex-flow: column;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    color: white;
+    position: relative;
+    top: 20%;
+}
+
+.title-1 {
+    font-size: 90px;
+    font-weight: normal;
+    margin-bottom: 0px;
+}
+
+.title-2 {
+    font-size: 20px;
+    margin-top: 8px;
+}
+
+.title-2 > span {
+    color: orange;
+}
+
+.btn {
+    width: 14%;
+    height: 7%;
+    background-color: rgba(68, 224, 63, 0.7);
+    color: white;
+    text-align: center;
+    border-radius: 40px;
+    margin: 0 auto;
+    position: relative;
+    top: 22%;
+    padding: auto 0px;
+    display: table;
+    cursor: pointer;
+}
+
+.btn > span {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.icontent {
+    background-color: white;
+    width: 100%;
+    height: auto;
+    padding-bottom: 100px;
+}
+
+.icontent-1 {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50%;
+    padding: 4%;
+}
+
+.icontent-1-title {
+    font-size: 35px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    top: 60%;
+}
+
+.icontent-1-title span {
+    color: orange;
+}
+
+.icontent-1-sub {
+    font-size: 18px;
+    line-height: 1.3em;
+    font-weight: 700;
+    position: relative;
+    top: 60%;
+}
+
+.icontent-2 {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50%;
+    padding: 4%;
+    text-align: right;
+}
+
+.icontent-2-title {
+    width: 100%;
+    font-size: 35px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    top: 60%;
+}
+
+.icontent-2-sub {
+    font-size: 18px;
+    line-height: 1.3em;
+    font-weight: 700;
+    position: relative;
+    top: 60%;
+}
+
+.login-panel {
+    position: relative;
+    top: -14%;
+    left: 38%;
+    width: 25%;
+    height: 58%;
+    border-radius: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    background-color: rgba(22, 22, 22, 0.3);
+    padding: 30px 0px;
+}
+
+.login-panel-logo {
+    width: 50%;
+    height: 22%;
+    background-size: cover;
+    background-position: center center;
+    margin-bottom: 40px;
+}
+
+.login-panel-btn {
+    width: 85%;
+    height: 8%;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#kakao-btn {
+    background-color: #FCEE11;
+}
+
+#kakao-btn:hover {
+    background-color: #E8CC04;
+}
+
+.login-panel-img {
+    width: 9%;
+    height: 30px;
+    background-size: cover;
+    background-position: center;
+    margin-left: 20px;
+}
+
+.login-panel-str {
+    width: 91%;
+    text-align: center;
+    color: black;
+}
+
+#login-panel-input {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    border: none;
+    padding-left: 25px;
+}
+
+#login-panel-input::placeholder {
+    letter-spacing: 1px;
+}
+
+#email-btn {
+    background-color: orange;
+    text-align: center;
+}
+
+#email-str {
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+#login-line {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 20 0 40 0;
+}
+
+#login-line div {
+    width: 40%;
+    height: 2px;
+    border-radius: 1px;
+    background-color: white;
+}
+
+#login-line span {
+    color: white;
+    margin: 0 10px;
+}
+
+#sign-up:hover {
+    background-color: #54CF08;
+    border-radius: 40px;
+}

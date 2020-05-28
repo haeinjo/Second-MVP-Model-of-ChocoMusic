@@ -1,4 +1,5 @@
-import random
+import os
+import requests
 from django.shortcuts import render, redirect, reverse
 from users import models as user_models
 from songs import models as song_models
@@ -6,7 +7,9 @@ from playlists import models as playlist_models
 
 
 def intro_view(request):
-    return render(request, "intro.html")
+    app_key_k = os.environ.get("KAKAO_JS")
+
+    return render(request, "intro.html", {"app_key_k": app_key_k})
 
 
 def home_view(request):

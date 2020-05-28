@@ -2,6 +2,7 @@ from django.db import models
 
 
 class TimeStamppedModel(models.Model):
+
     """
     class: TimeStamppedModel(abstract)
     author: haein
@@ -17,6 +18,7 @@ class TimeStamppedModel(models.Model):
 
 
 class AbstractItem(models.Model):
+
     """
     class: AbstractItem
     author: haein
@@ -31,6 +33,7 @@ class AbstractItem(models.Model):
 
 
 class Genre(AbstractItem):
+
     """
     class: Genre
     author: haein
@@ -43,6 +46,7 @@ class Genre(AbstractItem):
 
 
 class Position(AbstractItem):
+
     """
     class: Position
     author: haein
@@ -52,3 +56,42 @@ class Position(AbstractItem):
 
     def __str__(self):
         return f"{self.name}"
+
+
+class City(AbstractItem):
+
+    """
+    class: City
+    author: haein
+    des: 시
+    date: 2020-05-27
+    """
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class Borough(AbstractItem):
+
+    """
+    class: Borough
+    author: haein
+    des: 구
+    date: 2020-05-27
+    """
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class Tag(AbstractItem):
+
+    """
+    class: Tag
+    author: haein
+    des: 태그
+    date: 2020-05-28
+    """
+
+    def __str__(self):
+        return self.name

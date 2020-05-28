@@ -1,5 +1,118 @@
-{% extends 'base.html' %}
+{% load static %}
+<html lang="ko">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/core/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/intro/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/intro/nav-intro.css' %}">
+    <link href=f"https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+    {% comment %} kakao map api {% endcomment %}
+    {% comment %} <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{app_key_k}}&libraries=services"></script> {% endcomment %}
+    <title>
+        Welcome to ChocoMusic
+    </title>
+</head>
+
+<body>
+    <div style="background-image: url({% static 'img/background@2x.png' %})" class="bg-intro">
+        <div class="container icontainer">
+            <div class="nav-container">
+                <div class="inav">
+                    <div class="nav-logo inav-logo">
+                        <a href="{% url 'core:intro' %}">
+                            <img src="{% static 'img/logo title@2x.png' %}">
+                        </a>
+                    </div>
+                    <ul class="nav-menu inav-menu">
+                        <div class="nav-menu-1">
+                        </div>
+                        {% block search_bar %}
+                        <div class="nav-searchbar">
+                        </div>
+                        {% endblock search_bar %}
+                        <div class="nav-menu-2 inav-menu-2">
+                            <div><a href="#" class="nav-menu-2-el">Sign up</a></div>
+                            <div><a href="#" class="nav-menu-2-el">Log in</a></div>
+                        </div>
+                    </ul>
+                </div>
+                <div class="topline"></div>
+            </div>
+            <div class="title">
+                <h1 class="title-1">You Can Be a Musician.</h1>
+                <h5 class="title-2"><span>초코뮤직</span>과 함께 수많은 뮤지션들을 찾아보세요.</h5>
+            </div>
+            <div class="btn">
+            <span id="sign-up" class="display-clip">Go to sign up</sapn>
+            </div>
+            {% comment %} kakao map {% endcomment %}
+            {% comment %} <div id="map" style="width:500px;height:400px;"></div> {% endcomment %}
+
+            <div class="login-panel no-display-flex">
+                <div style="background-image: url({% static 'img/logo-w@2x.png' %})" class="login-panel-logo"></div>
+                <div class="login-panel-btn" id="kakao-btn"><div style="background-image:url({% static 'img/menu-img/kakaologo@2x.png' %})" class="login-panel-img" id="google-logo"></div><div class="login-panel-str">카카오톡 계정으로 로그인</div></div>
+                <div class="login-panel-btn"><div style="background-image:url({% static 'img/menu-img/googlelogo2.png' %})" class="login-panel-img"></div><div class="login-panel-str">구글 계정으로 로그인</div></div>
+                <div id="login-line"><div></div><span>or</span><div></div></div>
+                <div class="login-panel-btn"><input id="login-panel-input" placeholder="이메일 주소를 입력하세요."></div>
+                <div class="login-panel-btn" id="email-btn"><span id="email-str">이메일 계정으로 로그인</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="icontent">
+        <div class="icontent-1">
+            <div class="icontent-1-title">초코 뮤직의 <span>Band In</sapn></div>
+            <div class="icontent-1-sub">같은 지역에서 활동하는 뮤지션 혹은<br>
+            여러분에게 맞는 뮤지션을 찾아드립니다.</div>
+        </div>
+        <div class="icontent-2">
+            <div class="icontent-2-title">당신의 음악을 업로드 하세요.</div>
+            <div class="icontent-2-sub">다른 뮤지션들은 당신의 음악을 들으며<br>
+            당신과의 협업을 기다리고 있습니다.</div>
+        </div>
+    </div>
+
+    {% block main %}
+    <main class="container">
+    </main>
+    {% endblock main %}
+    <footer class="container footer">
+        {% include 'partials/footer.html' %}
+    </footer>
+    <script src="{% static 'js/intro/sign-up.js' %}" type="text/javascript"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends 'base.html' %}
+{% load static %}
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'css/intro/nav-intro.css' %}">
+{% endblock add_css %}
 
 {% block page_title %}
 Welcome to ChocoMusic
@@ -11,14 +124,18 @@ Welcome to ChocoMusic
 {% endblock header %}
 
 {% block main %}
-<h1>간략한 한마디</h1>
-<div>
-    <a href="{% url 'users:naver_login' %}">네이버계정 로그인</a>
-    <a href="{% url 'users:kakao_login' %}">카카오톡계정 로그인</a>
-    <a href="#">구글아이디 로그인</a>
-</div>
-<div>
-    <a href="#">회원가입</a>
-    <a href="#">로그인</a>
-</div>
-{% endblock main %}
+<main class="icontainer">
+    <div style="background-image: url({% static 'img/background@2x.png' %})">
+        <h1>간략한 한마디</h1>
+        <div>
+            <a href="{% url 'users:naver_login' %}">네이버계정 로그인</a>
+            <a href="{% url 'users:kakao_login' %}">카카오톡계정 로그인</a>
+            <a href="#">구글아이디 로그인</a>
+        </div>
+        <div>
+            <a href="#">회원가입</a>
+            <a href="#">로그인</a>
+        </div>
+    </div>
+</main>
+{% endblock main %} {% endcomment %}

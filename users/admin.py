@@ -37,6 +37,8 @@ class CustomUserAdmin(UserAdmin):
         "address",
         "gender",
         "avatar",
+        "is_varified",
+        "is_first",
     )
 
     filter_horizontal = (

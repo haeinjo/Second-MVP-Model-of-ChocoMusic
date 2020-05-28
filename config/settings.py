@@ -45,7 +45,7 @@ THIRD_PARTY_APPS = [
 
 PROJECT_APPS = [
     "users.apps.UsersConfig",
-    "songs.apps.SongsConfig",
+    # "songs.apps.SongsConfig",
     "evaluations.apps.EvaluationsConfig",
     "core.apps.CoreConfig",
     "projects.apps.ProjectsConfig",
@@ -53,6 +53,7 @@ PROJECT_APPS = [
     "recruitments.apps.RecruitmentsConfig",
     "conversations.apps.ConversationsConfig",
     "playlists.apps.PlaylistsConfig",
+    "contents.apps.ContentsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS

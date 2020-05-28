@@ -16,8 +16,8 @@
 
 <body>
     <div class="nav-bg"><div>
+    {% block header %}
     <header class="container">
-        {% block header %}
         <div class="nav-container">
         <div class="nav">
             <div class="nav-logo">
@@ -51,12 +51,12 @@
         </div>
         <div class="logo-underline"></div>
         <div class="topline"></div>
-        <div>
-        {% endblock header %}
+        </div>
     </header>
+    {% endblock header %}
     <main class="container">
-        {% block main %}
-        {% endblock main %}
+    {% block main %}
+    {% endblock main %}
     </main>
     <footer class="container footer">
         {% include 'partials/footer.html' %}
