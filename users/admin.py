@@ -25,6 +25,8 @@ class CustomUserAdmin(UserAdmin):
                     "avatar",
                     "positions",
                     "genres",
+                    "city",
+                    "borough",
                     "bio",
                 )
             },
@@ -37,7 +39,10 @@ class CustomUserAdmin(UserAdmin):
         "address",
         "gender",
         "avatar",
-        "is_varified",
+        "city",
+        "borough",
+        "email_varified",
+        "phone_varified",
         "is_first",
     )
 

@@ -1,6 +1,7 @@
-signUp = document.querySelector("#sign-up");
-loginPanel = document.querySelector(".login-panel");
-kakaoBtn = document.querySelector("#kakao-btn");
+let signUp = document.querySelector("#sign-up");
+let loginPanel = document.querySelector(".login-panel");
+let kakaoBtn = document.querySelector("#kakao-btn");
+let googleBtn = document.querySelector("#google-btn");
 
 
 signUp.addEventListener("click", () => {
@@ -12,11 +13,14 @@ kakaoBtn.addEventListener("click", () => {
     location.href = "/users/login/kakao/"
 })
 
+googleBtn.addEventListener("click", () => {
+    location.href = "/users/login/google/"
+})
+
 document.addEventListener("click", (e) => {
-    if (!e.target.classList.contains("display-clip") && !e.target.classList.contains("display-flex")) {
-        let displayed = document.querySelector(".display-flex");
-        displayed.classList.remove("display-flex");
-        displayed.classList.add("no-display-flex");
+    if (!loginPanel.contains(e.target) && !e.target.classList.contains("display-clip")) {
+        loginPanel.classList.remove("display-flex");
+        loginPanel.classList.add("no-display-flex");
     }
 })
 

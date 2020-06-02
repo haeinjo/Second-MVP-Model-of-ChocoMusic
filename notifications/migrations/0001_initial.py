@@ -9,29 +9,39 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('comments', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Conversation',
+            name='FollowingNotification',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateField(auto_now_add=True, null=True)),
                 ('updated', models.DateField(auto_now=True)),
-                ('title', models.CharField(max_length=64)),
             ],
             options={
                 'abstract': False,
             },
         ),
         migrations.CreateModel(
-            name='Message',
+            name='MultiLikeNotification',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateField(auto_now_add=True, null=True)),
                 ('updated', models.DateField(auto_now=True)),
-                ('message', models.TextField()),
-                ('conversation', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='messages', to='conversations.Conversation')),
+            ],
+            options={
+                'abstract': False,
+            },
+        ),
+        migrations.CreateModel(
+            name='OneLikeNotification',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateField(auto_now_add=True, null=True)),
+                ('updated', models.DateField(auto_now=True)),
+                ('like_content', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='one_like_notifications', to='comments.LikeContent')),
             ],
             options={
                 'abstract': False,

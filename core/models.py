@@ -58,32 +58,6 @@ class Position(AbstractItem):
         return f"{self.name}"
 
 
-class City(AbstractItem):
-
-    """
-    class: City
-    author: haein
-    des: 시
-    date: 2020-05-27
-    """
-
-    def __str__(self):
-        return f"{self.name}"
-
-
-class Borough(AbstractItem):
-
-    """
-    class: Borough
-    author: haein
-    des: 구
-    date: 2020-05-27
-    """
-
-    def __str__(self):
-        return f"{self.name}"
-
-
 class Tag(AbstractItem):
 
     """

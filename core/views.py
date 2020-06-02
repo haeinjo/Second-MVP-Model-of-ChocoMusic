@@ -2,8 +2,7 @@ import os
 import requests
 from django.shortcuts import render, redirect, reverse
 from users import models as user_models
-from songs import models as song_models
-from playlists import models as playlist_models
+from contents import models as content_models
 
 
 def intro_view(request):
@@ -24,22 +23,21 @@ def home_view(request):
             p_songs = []
             for position in positions:
                 for genre in genres:
-                    songs = song_models.Song.objects.filter(
-                        roles__position=position
-                    ).filter(genre=genre)
+                    songs = content_models.Content.objects.filter(
+                        project__team__members__positions=position
+                    ).filter(genres=genre)
                     p_songs += list(songs)
             p_songs = p_songs[0:5]
 
-            categories = playlist_models.ListCategory.objects.all()
-            playlists = {}
-            for category in categories:
-                if category.used:
-                    playlists[category.title] = playlist_models.PlayList.objects.filter(
-                        category=category
-                    ).only("songs")[:4]
+            # categories = playlist_models.ListCategory.objects.all()
+            # playlists = {}
+            # for category in categories:
+            #     if category.used:
+            #         playlists[category.title] = playlist_models.PlayList.objects.filter(
+            #             category=category
+            #         ).only("songs")[:4]
 
             teams = user.teams.all()
-            projects = user.projects.all()
 
             return render(
                 request,
@@ -47,9 +45,8 @@ def home_view(request):
                 {
                     "user": user,
                     "p_songs": p_songs,
-                    "playlists": playlists,
+                    # "playlists": playlists,
                     "teams": teams,
-                    "projects": projects,
                 },
             )
 

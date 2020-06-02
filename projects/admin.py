@@ -1,10 +1,5 @@
 from django.contrib import admin
 from . import models
-from songs import models as song_models
-
-
-class SongInline(admin.TabularInline):
-    model = song_models.Song
 
 
 @admin.register(models.Project)
@@ -29,7 +24,3 @@ class ProjectAdmin(admin.ModelAdmin):
         "team__positions__name",
         "team__genres__name",
     )
-
-    inlines = [
-        SongInline,
-    ]
