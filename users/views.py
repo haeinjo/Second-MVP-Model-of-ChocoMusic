@@ -63,7 +63,7 @@ def kakao_callback(request):
             kakao_account = profile_json.get("kakao_account")
             profile = kakao_account.get("profile")
             email = kakao_account.get("email")
-            gender = kakao_account.get("gender")
+            # gender = kakao_account.get("gender")
             profile_image = profile.get("profile_image-url")
 
             if email is None:
@@ -71,11 +71,13 @@ def kakao_callback(request):
             else:  # email 정보를 받아 왓을때
                 try:
                     existed_user = user_models.User.objects.get(email=email)
-                    if existed_user.login_meghod is "kakao":
+                    if existed_user.login_method == "kakao":
                         login(request, existed_user)
+                        if existed_user.is_first:
+                            return redirect(reverse("users:fst_edit"))
                         return redirect(reverse("core:home"))
                     else:  # user가 다른방법으로 회원가입 한 경우 통합할지의 여부를 결정
-                        return render("intro.html", {"is_duplicate": True})
+                        return render(request, "intro.html", {"is_duplicate": True})
                 except user_models.User.DoesNotExist:
                     new_user = user_models.User.objects.create_user(
                         username=email, email=email,
@@ -88,7 +90,6 @@ def kakao_callback(request):
                         )
                     login(request, new_user)
                     return redirect(reverse("users:fst_edit"))
-                    
 
             # try:
             #     user = user_models.User.objects.get(email=email)
@@ -243,13 +244,85 @@ def naver_callback(request):
         pass
 
 
-def first_edit(request, alias):
+def first_edit(request):
 
     if request.method == "GET":
-        form = user_forms.MusicianInfoForm(request.GET)
-        return render(request, "users/fst_edit.html", {"form": form})
+        form = user_forms.MusicianInfoForm()
+        return render(request, "users/fst_edit_alias.html", {"form": form})
     else:
-        user = user_models.User.objects.get(alias=alias)
-        form = user_forms.MusicianInfoForm(request.POST, instance=user)
-        form.save()
-        return redirect(reverse("core:home"))
+        user = user_models.User.objects.get(email=request.user)
+        print(dir(user))
+        form = user_forms.MusicianInfoForm(request.POST, request.FILES)
+        print(form)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("users:fst_edit_region", kwargs={"form": form}))
+        else:
+            return render(request, "users/fst_edit_alias.html")
+
+
+def first_edit_region(request):
+
+    ACTIVE_REGION = {
+        "서울특별시": [
+            "종로구",
+            "중구",
+            "용산구",
+            "성동구",
+            "광진구",
+            "동대문구",
+            "중랑구",
+            "성북구",
+            "강북구",
+            "도봉구",
+            "노원구",
+            "은평구",
+            "서대문구",
+            "마포구",
+            "양천구",
+            "강서구",
+            "구로구",
+            "금천구",
+            "영등포구",
+            "동작구",
+            "관악구",
+            "서초구",
+            "강남구",
+            "송파구",
+            "강동구",
+        ],
+        "부산광역시": [
+            "중구",
+            "서구",
+            "동구",
+            "영도구",
+            "부산진구",
+            "동래구",
+            "남구",
+            "북구",
+            "강서구",
+            "해운대구",
+            "사하구",
+            "금정구",
+            "연제구",
+            "수영구",
+            "사상구",
+            "기장군",
+        ],
+        "대구광역시": ["중구", "동구", "서구", "남구", "북구", "수성구", "달서구", "달성군"],
+        "인천광역시": ["중구", "동구", "미주홀구", "연수구", "남동구", "부평구", "계양구", "서구", "강화군", "옹진군"],
+        "광주광역시": ["동구", "서구", "남구", "북구", "광산구"],
+        "대전광역시": ["동구", "중구", "서구", "유성구", "대덕구"],
+        "울산광역시": ["중구", "남구", "동구", "북구", "울주군"],
+        "세종특별자치시": ["세종시"],
+    }
+
+    if request.method == "GET":
+        user_email = request.user
+        login_user = user_models.User.objects.get(email=user_email)
+        form = user_forms.MusicianInfoForm(instance=login_user)
+        return render(
+            request,
+            "users/fst_edit_region.html",
+            {"form": form, "region": ACTIVE_REGION},
+        )

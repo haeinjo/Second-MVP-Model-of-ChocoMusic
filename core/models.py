@@ -69,3 +69,31 @@ class Tag(AbstractItem):
 
     def __str__(self):
         return self.name
+
+
+class Borough(AbstractItem):
+
+    """
+    class: Borough
+    author: haein
+    des: 자치 구
+    date: 2020-06-05
+    """
+
+    city = models.ForeignKey("City", related_name="boroughs", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.city} - {self.name}"
+
+
+class City(AbstractItem):
+
+    """
+    class: City
+    author: haein
+    des: 자치 시
+    date: 2020-06-05
+    """
+
+    def __str__(self):
+        return self.name

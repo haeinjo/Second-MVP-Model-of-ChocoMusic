@@ -1,0 +1,178 @@
+.bg-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center, center;
+}
+
+.fst-topline {
+    z-index: 2;
+}
+
+.bg-img-dark {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    width:100%;
+    height:100%;
+    z-index: 1;
+}
+
+.fst-edit-panel {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    top: 25%;
+    left: 40%;
+    width: 400px;
+    height: 520px;
+    z-index: 3;
+    background-color: rgba(25, 25, 25, 0.9);
+    border-radius: 10px;
+}
+
+.fst-form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fst-input {
+    background-color: white;
+    width: 90%;
+    height: 40px;
+    margin-top: 25px;
+    border-radius: 7px;
+    border: none;
+    padding-left: 20px;
+}
+
+.fst-input:focus {
+    outline: none;
+}
+
+.fst-input:focus::placeholder {
+    color: transparent;
+}
+
+.fst-input::placeholder {
+    color: #909090;
+    font-weight: 600;
+}
+
+#fst-avatar {
+    width: 200px;
+    height: 200px;
+    border: none;
+    border-radius: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+#fst-avatar:hover {
+    background-color: #DFDFDF;
+}
+
+#fst-avatar-icon {
+    background-size: contain;
+    background-position: center, center;
+    background-repeat: no-repeat;
+    width: 27px;
+    height: 27px;
+    margin: auto;
+}
+
+#fst-avatar > input {
+    width: 100%;
+    margin: auto;
+    padding-left: 10px;
+    display: none;
+}
+
+.fst-cancel-panel {
+    width: 100%;
+    height: 25px;
+    margin: 10px;
+}
+
+#fst-cancel {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center, center;
+    cursor: pointer;
+    float: right;
+}
+
+.fst-title {
+    width: 100%;
+    margin: 5px, 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.fst-title > span {
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+}
+
+.fst-title-sub {
+    margin-bottom: 20px;
+}
+
+.fst-title-sub > span {
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+    display:block;
+    width: 100%;
+    text-align: center;
+}
+
+.fst-btn {
+    width: 45%;
+    height: 35px;
+    display: flex;
+    background-color: orange;
+    margin-top: 30px;
+    border-radius: 7px;
+    border: none;
+    align-items: center;
+    cursor: pointer;
+}
+
+.fst-btn:hover {
+    background-color: #F18A15;
+}
+
+.fst-btn > span {
+    display:flex;
+    width: 95%;
+    color: white;
+    justify-content: center;
+    padding-left: 10px;
+}
+
+.fst-btn > div {
+    width: 12px;
+    height: 12px;
+    background-size: contain;
+    background-position: center, center;
+    background-repeat: no-repeat;
+    float: right;
+}
+
+.fst-selected-img {
+    width: 201px;
+    height: 201px;
+    border-radius: 100%;
+    object-fit: cover;
+}

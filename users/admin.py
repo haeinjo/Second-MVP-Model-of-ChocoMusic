@@ -25,7 +25,6 @@ class CustomUserAdmin(UserAdmin):
                     "avatar",
                     "positions",
                     "genres",
-                    "city",
                     "borough",
                     "bio",
                 )
@@ -39,8 +38,6 @@ class CustomUserAdmin(UserAdmin):
         "address",
         "gender",
         "avatar",
-        "city",
-        "borough",
         "email_varified",
         "phone_varified",
         "is_first",
@@ -49,6 +46,7 @@ class CustomUserAdmin(UserAdmin):
     filter_horizontal = (
         "positions",
         "genres",
+        "borough",
     )
 
     search_fields = UserAdmin.search_fields + ("positions__name", "genres__name",)
