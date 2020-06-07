@@ -1,5 +1,6 @@
 import os
 import requests
+import json
 from django.core.files.base import ContentFile
 from django.contrib.auth import login
 from django.shortcuts import redirect, reverse, render
@@ -251,20 +252,20 @@ def first_edit(request):
         return render(request, "users/fst_edit_alias.html", {"form": form})
     else:
         user = user_models.User.objects.get(email=request.user)
-        print(dir(user))
-        form = user_forms.MusicianInfoForm(request.POST, request.FILES)
-        print(form)
+        form = user_forms.MusicianInfoForm(request.POST, request.FILES, instance=user)
+        for error in form.errors:
+            print(f"error: {error}")
         if form.is_valid():
-            form.save()
-            return redirect(reverse("users:fst_edit_region", kwargs={"form": form}))
+            print("success is_valid()")
+            return redirect(reverse("users:fst_edit_region"))
         else:
-            return render(request, "users/fst_edit_alias.html")
+            return render(request, "users/fst_edit_alias.html", {"form": form})
 
 
 def first_edit_region(request):
 
     ACTIVE_REGION = {
-        "서울특별시": [
+        "서울특별시": (
             "종로구",
             "중구",
             "용산구",
@@ -290,8 +291,8 @@ def first_edit_region(request):
             "강남구",
             "송파구",
             "강동구",
-        ],
-        "부산광역시": [
+        ),
+        "부산광역시": (
             "중구",
             "서구",
             "동구",
@@ -308,21 +309,25 @@ def first_edit_region(request):
             "수영구",
             "사상구",
             "기장군",
-        ],
-        "대구광역시": ["중구", "동구", "서구", "남구", "북구", "수성구", "달서구", "달성군"],
-        "인천광역시": ["중구", "동구", "미주홀구", "연수구", "남동구", "부평구", "계양구", "서구", "강화군", "옹진군"],
-        "광주광역시": ["동구", "서구", "남구", "북구", "광산구"],
-        "대전광역시": ["동구", "중구", "서구", "유성구", "대덕구"],
-        "울산광역시": ["중구", "남구", "동구", "북구", "울주군"],
-        "세종특별자치시": ["세종시"],
+        ),
+        "대구광역시": ("중구", "동구", "서구", "남구", "북구", "수성구", "달서구", "달성군"),
+        "인천광역시": ("중구", "동구", "미주홀구", "연수구", "남동구", "부평구", "계양구", "서구", "강화군", "옹진군"),
+        "광주광역시": ("동구", "서구", "남구", "북구", "광산구"),
+        "대전광역시": ("동구", "중구", "서구", "유성구", "대덕구"),
+        "울산광역시": ("중구", "남구", "동구", "북구", "울주군"),
+        "세종특별자치시": ("세종시"),
     }
 
     if request.method == "GET":
         user_email = request.user
         login_user = user_models.User.objects.get(email=user_email)
         form = user_forms.MusicianInfoForm(instance=login_user)
+        cities = ACTIVE_REGION.keys
+        boroughs = ACTIVE_REGION.values
+        region = json.dumps(ACTIVE_REGION, ensure_ascii=False)
+        print(region)
         return render(
             request,
             "users/fst_edit_region.html",
-            {"form": form, "region": ACTIVE_REGION},
+            {"form": form, "region": region, "cities": cities, "boroughs": boroughs,},
         )

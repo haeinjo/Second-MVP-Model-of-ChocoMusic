@@ -1,9 +1,14 @@
 let avatar = document.querySelector("#fst-avatar");
-let hiddenAvatar = document.querySelector("#fst-hidden-input");
-let subTitle = document.querySelector("#fst-sub")
+let hiddenAvatar = document.querySelector("#fst-avatar > input");
+let subTitle = document.querySelector("#fst-sub");
+// let username = document.querySelector("#id_username");
+// let fstBtn = document.querySelector(".fst-btn");
+
 
 avatar.addEventListener("click", clickAvatar);
 hiddenAvatar.addEventListener("change", selectAvatar);
+// fstBtn.addEventListener("click", clickFstBtn);
+
 
 function clickAvatar() {
     hiddenAvatar.click();
@@ -23,4 +28,3 @@ function selectAvatar() {
 
     subTitle.innerHTML = "프로필 사진이 선택되었습니다."
 }
-
