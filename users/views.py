@@ -325,7 +325,6 @@ def first_edit_region(request):
         cities = ACTIVE_REGION.keys
         boroughs = ACTIVE_REGION.values
         region = json.dumps(ACTIVE_REGION, ensure_ascii=False)
-        print(region)
         return render(
             request,
             "users/fst_edit_region.html",

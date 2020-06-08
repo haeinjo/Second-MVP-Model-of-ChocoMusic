@@ -28,7 +28,7 @@
         </div>
         <form method="POST" enctype="multipart/form-data" class="fst-form">
             {% csrf_token %}
-            {% comment %} {{ form.borough }} {% endcomment %}
+            {{ form.borough }}
             <button class="fst-btn"><span>2 of 5</span><div style="background-image: url({% static 'img/menu-img/arrow.png' %})"><div></button>
         </form>
     </div>
