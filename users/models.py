@@ -33,17 +33,19 @@ class User(AbstractUser):
     )
 
     email = models.EmailField(max_length=256)  # unique 부분에 대해서는 추후 상의가 필요함
-    alias = models.CharField(max_length=64)
+    alias = models.CharField(max_length=64, blank=True, null=True)
     address = models.CharField(max_length=128, blank=True, default="")
     bio = models.TextField(default="", blank=True)
-    gender = models.CharField(max_length=6, choices=GENDER_CHOICES)  # choice 항목 상의
-    avatar = models.ImageField(upload_to="user-profile")
+    gender = models.CharField(
+        max_length=6, choices=GENDER_CHOICES, blank=True, default=""
+    )  # choice 항목 상의
+    avatar = models.ImageField(upload_to="user-profile", blank=True, null=True)
     birthdate = models.DateField(blank=True, null=True)
     positions = models.ManyToManyField(
         "core.Position", related_name="users", blank=True
     )
     genres = models.ManyToManyField("core.Genre", related_name="users", blank=True)
-    borough = models.ManyToManyField("core.Borough", related_name="users")
+    borough = models.ManyToManyField("core.Borough", related_name="users", blank=True)
     email_varified = models.BooleanField(default=False)
     phone_varified = models.BooleanField(default=False)
     is_first = models.BooleanField(default=True)

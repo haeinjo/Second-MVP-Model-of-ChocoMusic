@@ -1,11 +1,13 @@
 import os
 import requests
 import json
+from django.shortcuts import get_object_or_404
 from django.core.files.base import ContentFile
 from django.contrib.auth import login
 from django.shortcuts import redirect, reverse, render
 from . import models as user_models
 from . import forms as user_forms
+from core import models as core_models
 
 
 def kakao_login(request):
@@ -81,7 +83,7 @@ def kakao_callback(request):
                         return render(request, "intro.html", {"is_duplicate": True})
                 except user_models.User.DoesNotExist:
                     new_user = user_models.User.objects.create_user(
-                        username=email, email=email,
+                        username=email, email=email, login_method="kakao",
                     )
                     new_user.save()
                     if profile_image is not None:
@@ -248,7 +250,8 @@ def naver_callback(request):
 def first_edit(request):
 
     if request.method == "GET":
-        form = user_forms.MusicianInfoForm()
+        login_user = user_models.User.objects.get(email=request.user)
+        form = user_forms.MusicianInfoForm(instance=login_user)
         return render(request, "users/fst_edit_alias.html", {"form": form})
     else:
         user = user_models.User.objects.get(email=request.user)
@@ -257,6 +260,7 @@ def first_edit(request):
             print(f"error: {error}")
         if form.is_valid():
             print("success is_valid()")
+            form.save()
             return redirect(reverse("users:fst_edit_region"))
         else:
             return render(request, "users/fst_edit_alias.html", {"form": form})
@@ -318,15 +322,52 @@ def first_edit_region(request):
         "세종특별자치시": ("세종시"),
     }
 
+    user_email = request.user
+    cities = ACTIVE_REGION.keys
+    boroughs = ACTIVE_REGION.values
+    region = json.dumps(ACTIVE_REGION, ensure_ascii=False)
+
     if request.method == "GET":
-        user_email = request.user
-        login_user = user_models.User.objects.get(email=user_email)
+        login_user = get_object_or_404(user_models.User, email=user_email)
         form = user_forms.MusicianInfoForm(instance=login_user)
-        cities = ACTIVE_REGION.keys
-        boroughs = ACTIVE_REGION.values
-        region = json.dumps(ACTIVE_REGION, ensure_ascii=False)
         return render(
             request,
             "users/fst_edit_region.html",
-            {"form": form, "region": region, "cities": cities, "boroughs": boroughs,},
+            {"form": form, "region": region, "cities": cities, "boroughs": boroughs},
         )
+    else:
+        login_user = get_object_or_404(user_models.User, email=user_email)
+        form = user_forms.MusicianInfoForm(
+            request.POST, request.FILES, instance=login_user
+        )
+        print(f"POST data: {request.POST}")
+        print(f"File: {request.FILES}")
+        if form.is_valid():
+            print(f"borough {form.cleaned_data}")
+            form.save()
+            return redirect(reverse("users:fst_edit_position"), kwargs={"form": form})
+        else:
+            print(form.errors)
+            return render(
+                request,
+                "users/fst_edit_region.html",
+                {
+                    "form": form,
+                    "region": region,
+                    "cities": cities,
+                    "boroughs": boroughs,
+                },
+            )
+
+
+def first_edit_position(request):
+    positions = core_models.Position.objects.all()
+    if request.method == "GET":
+        login_user = get_object_or_404(user_models.User, email=request.user)
+        form = user_forms.MusicianInfoForm(instance=login_user)
+        return render(
+            request,
+            "users/fst_edit_position.html",
+            {"form": form, "positions": positions},
+        )
+

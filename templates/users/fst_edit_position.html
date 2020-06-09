@@ -14,23 +14,21 @@
         <div class="fst-cancel-panel">
             <div style="background-image: url({% static 'img/menu-img/cancle@2x.png' %})" id="fst-cancel"></div>
         </div>
-        <div class="fst-title"><span>활동지역을 추가하세요</span></div>
+        <div class="fst-title"><span>선호 포지션을 선택하세요</span></div>
         <div class="fst-partition-horizontal"></div>
         <div id="fst-region">
             <div id="fst-city">
-                {% for city in cities %}
-                    <div>{{city|slice:":2"}}<span class="fst-hidden">{{city}}</span></div>
+                {% for position in positions %}
+                    <div>{{position}}</div>
                 {% endfor %}
-            </div>
-            <div class="fst-partition-vertical"></div>
-            <div id="fst-borough">
             </div>
         </div>
         <form method="POST" enctype="multipart/form-data" class="fst-form">
             {% csrf_token %}
-            {{ form.borough }}
+            {{ form.borough.as_hidden }}
             {{ form.alias.as_hidden }}
             {{ form.avatar.as_hidden }}
+            {{ form.positions }}
             <button class="fst-btn"><span>2 of 5</span><div style="background-image: url({% static 'img/menu-img/arrow.png' %})"><div></button>
         </form>
     </div>

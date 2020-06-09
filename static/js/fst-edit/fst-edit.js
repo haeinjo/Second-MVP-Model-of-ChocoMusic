@@ -11,6 +11,7 @@ hiddenAvatar.addEventListener("change", selectAvatar);
 
 
 function clickAvatar() {
+    console.log(hiddenAvatar);
     hiddenAvatar.click();
 }
 
