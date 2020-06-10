@@ -29,8 +29,8 @@ class RoleAdmin(admin.ModelAdmin):
     """
 
     filter_horizontal = ("users",)
-    list_filter = (("position__name", core_admin.custom_titled_filter("Position")),)
-    search_fields = ("users__email", "users__alia", "position__name")
+    list_filter = (("role__name", core_admin.custom_titled_filter("Position")),)
+    search_fields = ("users__email", "users__alia", "role__name")
 
 
 class RoleInline(admin.TabularInline):

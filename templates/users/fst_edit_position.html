@@ -4,41 +4,37 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/core/base.css' %}">
 <link rel="stylesheet" href="{% static 'css/intro/fst_edit.css' %}">
-<link rel="stylesheet" href="{% static 'css/intro/fst_edit_region.css' %}">
+<link rel="stylesheet" href="{% static 'css/intro/fst_edit_position.css' %}">
 {% endblock css %}
 
 {% block content %}
 <div style="background-image: url({% static 'img/background-image/bass-guitar@2x.png' %})" class="bg-img">
     <div class="bg-img-dark"></div>
-    <div class="fst-edit-panel" id="region-panel">
+    <div class="fst-edit-panel" id="position-panel">
         <div class="fst-cancel-panel">
             <div style="background-image: url({% static 'img/menu-img/cancle@2x.png' %})" id="fst-cancel"></div>
         </div>
         <div class="fst-title"><span>선호 포지션을 선택하세요</span></div>
         <div class="fst-partition-horizontal"></div>
-        <div id="fst-region">
-            <div id="fst-city">
-                {% for position in positions %}
-                    <div>{{position}}</div>
-                {% endfor %}
-            </div>
+        <div id="fst-position">
+            {% for position in positions %}
+                <div class="fst-hidden position-info">{{position}}</div>
+            {% endfor %}
         </div>
         <form method="POST" enctype="multipart/form-data" class="fst-form">
             {% csrf_token %}
             {{ form.borough.as_hidden }}
             {{ form.alias.as_hidden }}
             {{ form.avatar.as_hidden }}
+            {{ form.is_first.as_hidden }}
             {{ form.positions }}
-            <button class="fst-btn"><span>2 of 5</span><div style="background-image: url({% static 'img/menu-img/arrow.png' %})"><div></button>
+            <button class="fst-btn"><span>3 of 4</span><div style="background-image: url({% static 'img/menu-img/arrow.png' %})"><div></button>
         </form>
-    </div>
-    <div class="fst-hidden" id="fst-region-dict">
-        {{region}}
     </div>
 </div>
 <div class="topline fst-topline"></div>
 {% endblock content %}
 
 {% block js %}
-<script src="{% static 'js/fst-edit/fst-edit-region.js' %}" type="text/javascript">const region = {{region|safe}}</script>
+<script src="{% static 'js/fst-edit/fst-edit-position.js' %}" type="text/javascript"></script>
 {% endblock js %}

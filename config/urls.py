@@ -22,7 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("core.urls", namespace="core")),
     path("users/", include("users.urls", namespace="users")),
-    path("sogns/", include("songs.urls", namespace="songs")),
+    path("contents/", include("contents.urls", namespace="contents")),
 ]
 
 if settings.DEBUG:

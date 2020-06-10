@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{% static 'css/core/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/main.css' %}">
     <link href=f"https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    {% block css %}
+    {% endblock css %}
     <title>
         {% block page_title %}
         {% endblock page_title %}
@@ -17,6 +19,7 @@
 <body>
     <div class="nav-bg"><div>
     {% block header %}
+    <div class="topline"></div>
     <header class="container">
         <div class="nav-container">
         <div class="nav">
@@ -50,7 +53,6 @@
             </ul>
         </div>
         <div class="logo-underline"></div>
-        <div class="topline"></div>
         </div>
     </header>
     {% endblock header %}
@@ -61,6 +63,10 @@
     <footer class="container footer">
         {% include 'partials/footer.html' %}
     </footer>
+    {% block js %}
+    <script type="text/javascript"> const url = "{% url 'contents:add_content' %}"; </script>
+    <script src="{% static 'js/base.js' %}" type="text/javascript"></script>
+    {% endblock js %}
 </body>
 
 </html>

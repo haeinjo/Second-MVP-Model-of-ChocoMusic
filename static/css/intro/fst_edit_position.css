@@ -1,0 +1,65 @@
+#position-panel {
+    width: 500px;
+    height: 500px;
+    left: 40%;
+    top: 20%;
+}
+
+#fst-position {
+    display: flex;
+    width: 80%;
+    height: 330px;
+    background-color: rgba(22, 22, 22, 0.8);
+    border-radius: 8px;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+}
+
+.fst-partition-horizontal {
+    width: 90%;
+    height: 1px;
+    background-color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* #fst-position > div > div {
+    width: 60%;
+    height: 30px;
+    color: white;
+    font-size: 15px;
+    padding-left: 20px;
+    padding-top: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+} */
+
+.position-element {
+    width: 120px;
+    height: 22px;
+    background-color: gray;
+    border-radius: 20px;
+    color: white;
+    margin-right: 28px;
+    padding-top: 9px;
+    padding-left: 10px;
+    cursor:pointer;
+}
+
+.position-row {
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.position-element:hover {
+    background-color: #5E5E5E;
+    color: #A7A7A7;
+}
+
+.selected-position {
+    background-color: #075FE5;
+}

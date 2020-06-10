@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contents/add_content.css' %}">
+{% endblock css %}
+
+{% block main %}
+<div id="type-bg">
+    <div id="type-title">업로드 유형 선택</div>
+    <div id="type-next-btn"><img src="{% static 'img/menu-img/right-arrow@2x.png' %}" id="next-btn"></div>
+    <div id="type-panel">
+    </div>
+    <div id="progress-bar">
+        <div class="dot" id="dot1"></div>
+        <div class="line" id="line2"></div>
+        <div class="dot" id="dot2"></div>
+        <div class="line" id="line3"></div>
+        <div class="dot" id="dot3"></div>
+        <div class="line" ld="line4"></div>
+        <div class="dot" id="dot4"></div>
+        <div class="line" id="line5"></div>
+        <div class="dot" id="dot5"></div>
+    </div>
+</div>
+{{form.content_type}}
+{% endblock main %}
+

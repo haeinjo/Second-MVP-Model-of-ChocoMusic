@@ -25,7 +25,8 @@
             {% endif %}
             <div class="fst-title-sub"><span id="fst-sub">프로필 사진을 선택해주세요</span></div>
             {{ form.alias }}
-            <button class="fst-btn"><span>1 of 5</span><div style="background-image: url({% static 'img/menu-img/arrow.png' %})"><div></button>
+            {{ form.is_first.as_hidden }}
+            <button class="fst-btn"><span>1 of 4</span><div style="background-image: url({% static 'img/menu-img/arrow.png' %})"><div></button>
         </form>
     </div>
 </div>

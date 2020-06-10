@@ -12,6 +12,8 @@ class MusicianInfoForm(forms.ModelForm):
             "avatar",
             "borough",
             "positions",
+            "genres",
+            "is_first",
         )
 
     def __init__(self, *args, **kwargs):
@@ -22,4 +24,11 @@ class MusicianInfoForm(forms.ModelForm):
         self.fields["avatar"].widget.attrs.update({"class": "fst-hidden"})
         self.fields["borough"].required = False
         self.fields["positions"].required = False
+        self.fields["genres"].required = False
+        self.fields["is_first"].initial = True
         # self.fields["borough"].queryset = core_models.Borough.objects.all()
+
+    def clean_is_first(self):
+        if self.cleaned_data["genres"] is not None:
+            self.is_first = False
+        return self.is_first

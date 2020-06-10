@@ -39,7 +39,7 @@ class Role(core_models.TimeStamppedModel):
     """
 
     users = models.ManyToManyField("users.User", related_name="roles")
-    position = models.ForeignKey(
+    role = models.ForeignKey(
         "core.Position", on_delete=models.CASCADE, related_name="roles", default=None,
     )
     song = models.ForeignKey(

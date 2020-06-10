@@ -362,6 +362,7 @@ def first_edit_region(request):
 
 def first_edit_position(request):
     positions = core_models.Position.objects.all()
+
     if request.method == "GET":
         login_user = get_object_or_404(user_models.User, email=request.user)
         form = user_forms.MusicianInfoForm(instance=login_user)
@@ -370,4 +371,41 @@ def first_edit_position(request):
             "users/fst_edit_position.html",
             {"form": form, "positions": positions},
         )
+    else:
+        login_user = get_object_or_404(user_models.User, email=request.user)
+        form = user_forms.MusicianInfoForm(
+            request.POST, request.FILES, instance=login_user
+        )
 
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("users:fst_edit_genre"), kwargs={"form": form})
+        else:
+            return render(
+                request,
+                "users/fst_edit_position.html",
+                {"form": form, "positions": positions},
+            )
+
+
+def first_edit_genre(request):
+    genres = core_models.Genre.objects.all()
+
+    if request.method == "GET":
+        login_user = get_object_or_404(user_models.User, email=request.user)
+        form = user_forms.MusicianInfoForm(instance=login_user)
+        return render(
+            request, "users/fst_edit_genre.html", {"form": form, "genres": genres},
+        )
+    else:
+        login_user = get_object_or_404(user_models.User, email=request.user)
+        form = user_forms.MusicianInfoForm(
+            request.POST, request.FILES, instance=login_user
+        )
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("core:home"))
+        else:
+            return render(
+                request, "users/fst_edit_genre.html", {"form": form, "genres": genres}
+            )

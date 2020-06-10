@@ -21,6 +21,7 @@ class CustomUserAdmin(UserAdmin):
                     "alias",
                     "birthdate",
                     "address",
+                    "is_first",
                     "gender",
                     "avatar",
                     "positions",
