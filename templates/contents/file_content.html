@@ -1,0 +1,28 @@
+{% extends 'contents/create_content.html' %}
+{% load static %}
+
+{% block css_option %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contents/file_content.css' %}">
+{% endblock css_option %}
+
+{% block title %}
+파일 업로드
+{% endblock title %}
+
+{% block content-panel %}
+<div id="info-panel">
+</div>
+<div id="file-panel">
+    <div id="file-drag"><div id="file-icon" style="background-image:url({% static 'img/menu-img/file-icon@2x.png' %})"></div><div id="file-drag-text">파일을 드래그해서 가져오세요</div></div>
+    <div id="file-scraper">또는 데스크톱에서 가져오기</div>
+</div>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="content_file" id="id_content_file" class="hidden-element">
+    <button class="hidden-element"></button>
+</form>
+{% endblock content-panel %}
+
+{% block js %}
+<script src="{% static 'js/contents/file_content.js' %}"></script>
+{% endblock js %}

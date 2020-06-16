@@ -1,0 +1,89 @@
+#check-bg {
+    width: 90%;
+    height: 580px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 18%;
+}
+
+#check-photo {
+    width: 25%;
+    height: 300.281px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#check-photo:hover {
+    background-color: #F7F7F7;
+    font-weight: 700;
+}
+
+.check-div {
+    height: 30px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    padding-top: 8px;
+    padding-left: 10px;
+}
+
+#check-title {
+    width: 55%;
+}
+
+#check-genre {
+    width: 30%;
+}
+
+#check-project {
+    width: 30%;
+}
+
+.content-check-label {
+    font-size: 19px;
+    font-weight: 700;
+    margin-top: 25px;
+}
+
+#type-panel {
+    height: 600px;
+}
+
+#id_exposure_level {
+    padding-left: 0px;
+    display: flex;
+}
+
+#id_exposure_level > li {
+    margin-right: 8px;
+}
+
+button {
+    float: right;
+    margin-right: 10%;
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: orange;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FF990E;
+}
+
+.check-bg {
+    background-size: cover;
+    background-position: center, center;
+}

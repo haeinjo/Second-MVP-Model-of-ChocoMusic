@@ -1,0 +1,27 @@
+{% extends 'contents/create_content.html' %}
+{% load static %}
+
+{% block css_option %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contents/type_content.css' %}">
+{% endblock css_option %}
+
+{% block title %}
+업로드 유형 선택
+{% endblock title %}
+
+{% block content-panel %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <select name="content_type" required="" id="id_content_type" class="hidden-element">
+        <option value="" selected="">---------</option>
+        <option value="cover">Cover</option>
+        <option value="own">Own</option>
+        <option value="clip">Clip</option>
+    </select>
+    <button class="hidden-element"></button>
+</form>
+{% endblock content-panel %}
+
+{% block js %}
+<script src="{% static 'js/contents/type_content.js' %}"></script>
+{% endblock js %}

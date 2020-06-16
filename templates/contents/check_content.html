@@ -1,0 +1,33 @@
+{% extends 'contents/create_content.html' %}
+{% load static %}
+
+{% block css_option %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contents/check_content.css' %}">
+{% endblock css_option %}
+
+{% block title %}
+최종 확인
+{% endblock title %}
+
+{% block content-panel %}
+<div id="check-bg">
+    <div id="check-photo" class="check-div"></div>
+    <div id="check-title" class="check-div"></div>
+    <div id="check-genre" class="check-div"></div>
+    <div id="check-project" class="check-div"></div>
+    <div class="content-check-label">공개 범위</div>
+
+    <form method="POST" enctype="multipart/form-data" id="info-form">
+        {% csrf_token %}
+        {{form.exposure_level}}
+        <button>업로드 완료</button>
+    </form>
+</div>
+<form method="POST" enctype="multipart/form-data" id="info-form">
+{{form}}
+</form>
+{% endblock content-panel %}
+
+{% block js %}
+<script src="{% static 'js/contents/check_content.js' %}"></script>
+{% endblock js %}

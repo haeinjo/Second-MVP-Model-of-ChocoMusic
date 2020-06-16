@@ -25,7 +25,7 @@ def home_view(request):
                 for genre in genres:
                     songs = content_models.Content.objects.filter(
                         project__team__members__positions=position
-                    ).filter(genres=genre)
+                    ).filter(genre=genre)
                     p_songs += list(songs)
             p_songs = p_songs[0:5]
 

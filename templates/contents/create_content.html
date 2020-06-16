@@ -2,14 +2,21 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/contents/add_content.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contents/create_content.css' %}">
+{% block css_option %}
+{% endblock css_option %}
 {% endblock css %}
 
 {% block main %}
 <div id="type-bg">
-    <div id="type-title">업로드 유형 선택</div>
-    <div id="type-next-btn"><img src="{% static 'img/menu-img/right-arrow@2x.png' %}" id="next-btn"></div>
+    <div id="type-title">{% block title %}{% endblock title %} </div>
+    <div id="content-btn">
+        <div id="type-pre-btn"><img src="{% static 'img/menu-img/left-arrow@2x.png' %}" id="pre-btn"></div>
+        <div id="type-next-btn"><img src="{% static 'img/menu-img/right-arrow@2x.png' %}" id="next-btn"></div>
+    </div>
     <div id="type-panel">
+    {% block content-panel %}
+    {% endblock content-panel %}
     </div>
     <div id="progress-bar">
         <div class="dot" id="dot1"></div>
@@ -17,12 +24,14 @@
         <div class="dot" id="dot2"></div>
         <div class="line" id="line3"></div>
         <div class="dot" id="dot3"></div>
-        <div class="line" ld="line4"></div>
+        <div class="line" id="line4"></div>
         <div class="dot" id="dot4"></div>
         <div class="line" id="line5"></div>
         <div class="dot" id="dot5"></div>
     </div>
 </div>
-{{form.content_type}}
 {% endblock main %}
+
+{% block js %}
+{% endblock js %}
 

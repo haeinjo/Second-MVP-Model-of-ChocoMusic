@@ -1,0 +1,73 @@
+.hidden-element {
+    display: none;
+}
+
+#type-panel {
+    flex-direction: column;
+    height: 70%;
+}
+
+#info-panel {
+    width: 72%;
+    height: 75px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 40px;
+    box-shadow: 0 0 4px;
+}
+
+#file-panel {
+    width: 72%;
+    height: 400px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 0 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#file-drag {
+    width: 42%;
+    height: 30px;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#file-icon {
+    width: 30px;
+    height: 30px;
+    background-position: center, center;
+    background-size: contain;   
+    background-repeat: no-repeat;
+}
+
+#file-drag-text {
+    width: 303.844px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: 900;
+    color: #666666;
+    text-align: center;
+    padding-top: 7px;
+}
+
+#file-scraper {
+    width: 42%;
+    height: 30px;
+    background-color: orange;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 17px;
+    text-align: center;
+    padding-top: 16px;
+    box-shadow: 0 0 4px 0 gray;
+    cursor: pointer;
+}
+
+#file-scraper:hover {
+    background-color: #FF990E;
+}

@@ -31,7 +31,7 @@ class ContentAdmin(admin.ModelAdmin):
         "content_title",
         "project",
         "content_type",
-        "is_exposure",
+        "exposure_level",
     )
 
     fieldsets = (
@@ -44,4 +44,4 @@ class ContentAdmin(admin.ModelAdmin):
         "content_type",
     )
 
-    list_filter = ("content_type",)
+    list_filter = ("content_type", "exposure_level")

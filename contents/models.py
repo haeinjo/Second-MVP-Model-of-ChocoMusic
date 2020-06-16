@@ -12,6 +12,16 @@ TYPE_CHOICES = (
     (TYPE_CLIP, "Clip"),
 )
 
+PUBLIC = "public"
+PRIVATE = "private"
+LIMITED = "limited"
+
+EXPOSURE_CHOICES = (
+    (PUBLIC, "전체공개"),
+    (PRIVATE, "비공개"),
+    (LIMITED, "제한공개"),
+)
+
 
 class Content(core_models.TimeStamppedModel):
 
@@ -23,15 +33,19 @@ class Content(core_models.TimeStamppedModel):
     """
 
     project = models.ForeignKey(
-        "projects.Project", related_name="contents", on_delete=models.CASCADE
+        "projects.Project", related_name="contents", on_delete=models.CASCADE,
     )
     content_file = models.FileField(upload_to="contents")
     content_photo = models.ImageField(upload_to="contents-photo")
     content_title = models.CharField(max_length=64)  # 컨텐츠 제목
-    genres = models.ManyToManyField("core.Genre")
+    genre = models.ForeignKey(
+        "core.Genre", on_delete=models.CASCADE, related_name="contents", default=None,
+    )
     description = models.TextField(default="", blank=True)
     lyrics = models.TextField(default="", blank=True)
-    is_exposure = models.BooleanField(default=False)
+    exposure_level = models.CharField(
+        max_length=16, default=None, choices=EXPOSURE_CHOICES
+    )
     content_type = models.CharField(max_length=16, choices=TYPE_CHOICES)
 
     def __str__(self):

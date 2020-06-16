@@ -1,0 +1,60 @@
+{% extends 'contents/create_content.html' %}
+{% load static %}
+
+{% block css_option %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contents/info_content.css' %}">
+{% endblock css_option %}
+
+{% block title %}
+콘텐츠 정보 입력
+{% endblock title %}
+
+{% block content-panel %}
+<div id="info-bg">
+    <form method="POST" enctype="multipart/form-data" id="info-form">
+        {% csrf_token %}
+        <input type="file" name="content_photo" id="id_content_photo" class="hidden-element">
+        <div id="left-info">
+            <div id="content-photo"><div id="content-photo-img" style="background-image:url({% static 'img/menu-img/camera@2x.png' %})"></div><div id="content-photo-label">앨범 커버에 사진 추가</div></div>
+            <div class="content-info-label">장르 *</div>
+            <select name="genre" class="content-info-select" id="id_genre">
+                <option value="" selected="" disabled>장르를 선택하세요.</option>
+                {% for genre in genres %}
+                    <option value="{{genre.id}}">{{genre.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div id="right-info">
+            <div class="content-info-label">제목 *</div>
+            <input type="text" name="content_title" maxlength="64" class="content-info-select" id="id_content_title">
+            <div id="content-teamProject">
+                <div id="content-team">
+                    <div class="content-info-label">팀 *</div>
+                    <select name="team" class="content-info-select" id="id_content_team">
+                        <option disabled selected value>팀을 선택하세요.</option>
+                        {% for team in teams %}
+                        <option value="{{team.id}}">{{team}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div id="content-project">
+                    <div class="content-info-label">프로젝트 *</div>
+                    <select name="project" class="content-info-select" id="id_project">
+                        <option value="" selected="">프로젝트를 선택하세요.</option>
+                        {% for project in projects %}
+                            <option value="{{project__id}}">{{project}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="content-info-label">설명</div>
+            <textarea name="description" cols="40" rows="10" class="content-info-select" id="id_description"></textarea>
+        </div>
+        <button class="hidden-element"></button>
+    </form>
+</div>
+{% endblock content-panel %}
+
+{% block js %}
+<script src="{% static 'js/contents/info_content.js' %}"></script>
+{% endblock js %}

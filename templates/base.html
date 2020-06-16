@@ -63,9 +63,9 @@
     <footer class="container footer">
         {% include 'partials/footer.html' %}
     </footer>
-    {% block js %}
-    <script type="text/javascript"> const url = "{% url 'contents:add_content' %}"; </script>
+    <script type="text/javascript"> const url = "{% url 'contents:add_type_content' %}"; </script>
     <script src="{% static 'js/base.js' %}" type="text/javascript"></script>
+    {% block js %}
     {% endblock js %}
 </body>
 
