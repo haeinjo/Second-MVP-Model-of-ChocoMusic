@@ -8,6 +8,21 @@ from projects import models as project_models
 from core import models as core_models
 
 
+class AddContentView(View):
+
+    """
+    class: AddContenTypeView
+    author: haein
+    des: Class Model to Add Type of a Content
+    date: 2020-06-10
+    """
+
+    def get(self, *args, **kwargs):
+        form = content_forms.ContentForm()
+        context = {"form": form}
+        return render(self.request, "contents/create_content.html", context)
+
+
 class AddContentTypeView(View):
 
     """

@@ -4,15 +4,18 @@ const titleDiv = document.querySelector("#check-title");
 const genreDiv = document.querySelector("#check-genre");
 const projectDiv = document.querySelector("#check-project");
 const levelUl = document.querySelector("#id_exposure_level");
+const typeInput = document.querySelector("#id_content_type");
 const titleInput = document.querySelector("#id_content_title");
 const descriptionInput = document.querySelector("#id_description");
+const fileInput = document.querySelector("#id_content_file");
+const uploadButton = document.querySelector("button")
 
 
 window.onload = initCheckContent();
 
 function initCheckContent() {
     typeNextBtn.classList.add("hidden-element");
-
+    uploadButton.addEventListener("click", clickUploadBtn);
 
     // Note: The file system has been prefixed as of Google Chrome 12:
     window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
@@ -31,11 +34,21 @@ function initCheckContent() {
     document.querySelector("#dot3").style.backgroundColor = "#FFAA00";
     document.querySelector("#line4").style.backgroundColor = "#FFAA00";
     document.querySelector("#dot4").style.backgroundColor = "#FFAA00";
+
+    // Set Empty Tags
     setDiv();
+}
+
+function clickUploadBtn() {
+    const contentType = sessionStorage.getItem("content_type");
+    const contentTitle = sessionStorage.getItem("content_title");
+
 }
 
 function setDiv() {
     setCheckPhoto();
+    setCheckFile();
+    setCheckType();
     setCheckTitle();
     setCheckGenre();
     setCheckProject();
@@ -45,6 +58,15 @@ function setDiv() {
 function setCheckPhoto() {
     const contentPhoto = sessionStorage.getItem("content_photo");
     window.requestFileSystem(window.PERSISTENT, 100 * 1024 * 1024, onInitPhoto, errorHandler);
+}
+
+function setCheckFile() {
+    window.requestFileSystem(window.PERSISTENT, 100 * 1024 * 1024, onInitFile, errorHandler);
+}
+
+function setCheckType() {
+    const contentType = sessionStorage.getItem("content_type");
+    setTypeInput(contentType);
 }
 
 function setCheckTitle() {
@@ -64,6 +86,26 @@ function setCheckProject() {
 function setCheckDescription() {
     const description = sessionStorage.getItem("description");
     descriptionInput.value = description;
+}
+
+function setTypeInput(ct) {
+    let optionList = typeInput.options;
+    let inputValue = "";
+
+    if (ct === "커버곡") {
+        inputValue = "cover";
+    } else if (ct === "자작곡") {
+        inputValue = "own";
+    } else {
+        inputValue = "clip";
+    }
+
+    for (let i = 0; optionList[i]; ++i) {
+        if (optionList[i].value === inputValue) {
+            typeInput.selectedIndex = i;
+            break;
+        }
+    }
 }
 
 
@@ -101,12 +143,34 @@ function errorHandler(e) {
 
 function onInitPhoto(fs) {
     fs.root.getFile(sessionStorage.getItem('content_photo'), {}, function (fileEntry) {
-        console.log("SDsdfsdfsf");
         // Get a File object representing the file,
         // then use FileReader to read its contents.
         const fileURL = fileEntry.toURL();
-        console.log(`fileURL: ${fileURL}`);
         photoDiv.style.backgroundImage = `url(${fileURL})`;
         photoDiv.classList.add("check-bg");
+    }, errorHandler);
+}
+
+function onInitFile(fs) {
+    fs.root.getFile(sessionStorage.getItem('content_file'), {}, function (fileEntry) {
+        // Get a File object representing the file,
+        // then use FileReader to read its contents.
+        fileEntry.file(function (f) {
+            console.log(f);
+            const reader = new FileReader();
+
+            fileInput.files = reader.readAsArrayBuffer(f);
+            console.log(fileInput.files);
+            //    var reader = new FileReader();
+
+            //    reader.onloadend = function(e) {
+            //      var txtArea = document.createElement('textarea');
+            //      txtArea.value = this.result;
+            //      document.body.appendChild(txtArea);
+            //    };
+
+            //    reader.readAsText(file);
+        }, errorHandler);
+
     }, errorHandler);
 }

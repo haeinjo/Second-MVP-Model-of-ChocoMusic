@@ -25,4 +25,5 @@ urlpatterns = [
         content_views.AddContentCheckView.as_view(),
         name="add_check_content",
     ),
+    path("create/", content_views.AddContentView.as_view(), name="add_content",),
 ]

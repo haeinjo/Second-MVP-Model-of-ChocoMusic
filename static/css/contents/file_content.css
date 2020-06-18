@@ -1,13 +1,16 @@
-.hidden-element {
-    display: none;
-}
-
-#type-panel {
+.content__file {
+    width: 100%;
+    height: 100%;
+    margin-left: 4%;
+    background-color: #E8E8E8;
+    border-radius: 20px;
+    display: flex;
     flex-direction: column;
-    height: 70%;
+    justify-content: center;
+    align-items: center;
 }
 
-#info-panel {
+.file__info {
     width: 72%;
     height: 75px;
     background-color: white;
@@ -16,7 +19,7 @@
     box-shadow: 0 0 4px;
 }
 
-#file-panel {
+.file__panel {
     width: 72%;
     height: 400px;
     background-color: white;
@@ -29,14 +32,14 @@
     align-items: center;
 }
 
-#file-drag {
+.panel__drag {
     width: 42%;
     height: 30px;
     display: flex;
     margin-bottom: 20px;
 }
 
-#file-icon {
+.drag__icon {
     width: 30px;
     height: 30px;
     background-position: center, center;
@@ -44,7 +47,7 @@
     background-repeat: no-repeat;
 }
 
-#file-drag-text {
+.drag__text {
     width: 303.844px;
     height: 30px;
     font-size: 18px;
@@ -54,7 +57,7 @@
     padding-top: 7px;
 }
 
-#file-scraper {
+.panel__scraper {
     width: 42%;
     height: 30px;
     background-color: orange;
@@ -68,6 +71,6 @@
     cursor: pointer;
 }
 
-#file-scraper:hover {
+.panel__scraper:hover {
     background-color: #FF990E;
 }

@@ -1,4 +1,14 @@
-#type-bg {
+/* #type-bg {
+    background-color: white;
+    max-width: 1200px;
+    width: 80%;
+    height: 900px;
+    margin: 0 auto;
+    position: relative;
+    top: 3px;
+} */
+
+.main__canvas {
     background-color: white;
     max-width: 1200px;
     width: 80%;
@@ -8,14 +18,14 @@
     top: 3px;
 }
 
-#type-title {
+.main__title {
     margin-top: 70px;
     text-align: center;
     color: gray;
     font-size: 30px;
 }
 
-#content-btn {
+.main__btn {
     width: 92%;
     height: 6%;
     margin-left: 4%;
@@ -23,42 +33,36 @@
     display: flex;
 }
 
-#type-pre-btn {
+.btn__pre {
     width: 50%;
     height: 100%;
 }
 
-#type-next-btn {
+.btn__next {
    width: 50%;
    height: 100%;
 }
 
-#pre-btn {
+.btn__pre__img {
     width: 65px;
     height: 35px;
     float: left;
     cursor: pointer;
 }
 
-#next-btn {
+.btn__next__img {
     width: 65px;
     height: 35px;
     float: right;
     cursor: pointer;
 }
 
-#type-panel {
+.main__content {
     width: 92%;
     height: 60%;
-    margin-left: 4%;
-    background-color: #E8E8E8;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-#progress-bar {
+.main__progress {
     display: flex;
     width: 100%;
     height: 15%;
@@ -66,15 +70,27 @@
     align-items: center;
 }
 
-.dot {
+.progress__dot {
     width: 20px;
     height: 20px;
     border-radius: 100%;
     background-color: #ABABAB;
 }
 
-.line {
+.progress__line {
     width: 140px;
     height: 5px;
     background-color: #ABABAB;
+}
+
+.progress--set {
+    background-color: orange;
+}
+
+.element--hidden {
+    display: none;
+}
+
+.element--hover {
+    background-color: black;
 }

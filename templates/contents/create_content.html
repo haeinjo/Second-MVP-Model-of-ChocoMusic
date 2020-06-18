@@ -3,35 +3,33 @@
 
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/contents/create_content.css' %}">
-{% block css_option %}
-{% endblock css_option %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contents/file_content.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contents/type_content.css' %}">
 {% endblock css %}
 
 {% block main %}
-<div id="type-bg">
-    <div id="type-title">{% block title %}{% endblock title %} </div>
-    <div id="content-btn">
-        <div id="type-pre-btn"><img src="{% static 'img/menu-img/left-arrow@2x.png' %}" id="pre-btn"></div>
-        <div id="type-next-btn"><img src="{% static 'img/menu-img/right-arrow@2x.png' %}" id="next-btn"></div>
+<div class="main__canvas">
+    <div class="main__title">컨텐츠 생성</div>
+    <div class="main__btn">
+        <div class="btn__pre"><img src="{% static 'img/menu-img/left-arrow@2x.png' %}" class="btn__pre__img"></div>
+        <div class="btn__next"><img src="{% static 'img/menu-img/right-arrow@2x.png' %}" class="btn__next__img"></div>
     </div>
-    <div id="type-panel">
-    {% block content-panel %}
-    {% endblock content-panel %}
+    <div class="main__content">
+    {% include 'mixins/contents/content_type.html' with form_type=form.content_type %}
+    {% include 'mixins/contents/content_file.html' with form_file=form.content_file %}
     </div>
-    <div id="progress-bar">
-        <div class="dot" id="dot1"></div>
-        <div class="line" id="line2"></div>
-        <div class="dot" id="dot2"></div>
-        <div class="line" id="line3"></div>
-        <div class="dot" id="dot3"></div>
-        <div class="line" id="line4"></div>
-        <div class="dot" id="dot4"></div>
-        <div class="line" id="line5"></div>
-        <div class="dot" id="dot5"></div>
-    </div>
+    {% include 'partials/contents/progress_bar.html' %}
 </div>
+<form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button></button>
+    </form>
 {% endblock main %}
 
 {% block js %}
+<script src="{% static 'js/contents/create_content.js' %}"></script>
+<script src="{% static 'js/contents/type_content.js' %}"></script>
+<script src="{% static 'js/contents/file_content.js' %}"></script>
 {% endblock js %}
 
