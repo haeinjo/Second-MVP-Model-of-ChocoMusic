@@ -35,6 +35,7 @@ function convertType(t) {
 }
 
 function setTypeSelect(t) {
+    console.log(t);
     document.querySelector(`option[value=${t}]`).selected = true;
 }
 

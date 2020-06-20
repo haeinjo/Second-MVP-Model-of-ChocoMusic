@@ -1,0 +1,40 @@
+{% load static %}
+
+<div class="content__info">
+    <section class="info__section1">
+        <div class="section1__photo">
+            <img src="{% static 'img/menu-img/camera@2x.png' %}" class="photo__img"></img>
+            <div>앨범 커버에 사진 추가</div>
+        </div>
+        <div class="section1__genre">
+            <div class="section__label">장르 *</div>
+            <select class="genre__select">
+                <option selected disable>장르를 선택해 주세요.</option>
+                {% for genre in genres %}
+                <option value={{genre.id}}>{{genre.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </section>
+    <section class="info__section2">
+        <div class="section2__article"><div class="section__label">제목 *</div><input class="section__input section2__title"></input></div>
+        <div class="section2__teamProject">
+            <div class="section2__article">
+                <div class="section__label">팀 *</div>
+                <select class="section__input team__input">
+                    <option selected disable>팀을 선택해 주세요.</option>
+                    {% for team in teams %}
+                    <option value={{team.id}}>{{team.name}}</option>
+                    {% endfor %}
+                </select> 
+            </div>
+            <div class="section2__article">
+                <div class="section__label">프로젝트 *</div>
+                <select class="section__input project__input">
+                    <option selected disable>팀을 먼저 선택해 주세요.</option>
+                </select>
+            </div>
+        </div>
+        <div class="section2__article"><div class="section__label">설명 *</div><textarea name="description" cols="40" rows="10" class="section__input description__input"></textarea></div>
+    </section>
+</div>

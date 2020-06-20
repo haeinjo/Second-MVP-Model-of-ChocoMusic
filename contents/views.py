@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect, reverse
-from django.views.generic import View, FormView
-from . import models as content_models
+from django.views.generic import View
 from . import forms as content_forms
-from users import models as user_models
 from teams import models as team_models
 from projects import models as project_models
 from core import models as core_models
@@ -19,8 +17,38 @@ class AddContentView(View):
 
     def get(self, *args, **kwargs):
         form = content_forms.ContentForm()
-        context = {"form": form}
+        genres = core_models.Genre.objects.all()
+        teams = team_models.Team.objects.filter(members=self.request.user)
+        context = {"form": form, "teams": teams, "genres": genres}
         return render(self.request, "contents/create_content.html", context)
+
+    def post(self, *args, **kwargs):
+
+        if self.request.POST.get("team") is not None:
+            thisTeam = self.request.POST.get("team")
+            form = content_forms.ContentForm(team=thisTeam)
+            genres = core_models.Genre.objects.all()
+            teams = team_models.Team.objects.filter(members=self.request.user)
+            projects = project_models.Project.objects.filter(team=thisTeam)
+
+            context = {
+                "form": form,
+                "teams": teams,
+                "genres": genres,
+                "projects": projects,
+            }
+
+            return render(self.request, "contents/create_content.html", context)
+        else:
+            team = None
+            form = content_forms.ContentForm(
+                team, self.request.POST, self.request.FILES
+            )
+            if form.is_valid():
+                form.save()
+                return redirect(reverse("core:home"))
+            else:
+                return render(self.request, "content/create_content.html", context)
 
 
 class AddContentTypeView(View):

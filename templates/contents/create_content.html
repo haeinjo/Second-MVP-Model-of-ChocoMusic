@@ -5,6 +5,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/contents/create_content.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/contents/file_content.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/contents/type_content.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contents/info_content.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contents/check_content.css' %}">
 {% endblock css %}
 
 {% block main %}
@@ -15,21 +17,25 @@
         <div class="btn__next"><img src="{% static 'img/menu-img/right-arrow@2x.png' %}" class="btn__next__img"></div>
     </div>
     <div class="main__content">
-    {% include 'mixins/contents/content_type.html' with form_type=form.content_type %}
-    {% include 'mixins/contents/content_file.html' with form_file=form.content_file %}
+    {% include 'mixins/contents/content_type.html' %}
+    {% include 'mixins/contents/content_file.html' %}
+    {% include 'mixins/contents/content_info.html' %}
+    {% include 'mixins/contents/content_check.html' %}
     </div>
     {% include 'partials/contents/progress_bar.html' %}
 </div>
 <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-        <button></button>
-    </form>
+        <button class="form__button"></button>
+</form>
 {% endblock main %}
 
 {% block js %}
 <script src="{% static 'js/contents/create_content.js' %}"></script>
 <script src="{% static 'js/contents/type_content.js' %}"></script>
 <script src="{% static 'js/contents/file_content.js' %}"></script>
+<script src="{% static 'js/contents/info_content.js' %}"></script>
+<script src="{% static 'js/contents/check_content.js' %}"></script>
 {% endblock js %}
 

@@ -36,7 +36,18 @@ class ContentAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ("By", {"fields": ("project",)}),
-        ("Song Info", {"fields": ("description", "lyrics", "genres")}),
+        (
+            "Song Info",
+            {
+                "fields": (
+                    "description",
+                    "lyrics",
+                    "genre",
+                    "content_photo",
+                    "content_file",
+                )
+            },
+        ),
     )
     search_fields = (
         "project__title",

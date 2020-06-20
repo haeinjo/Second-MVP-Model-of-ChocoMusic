@@ -4,9 +4,13 @@
     margin-left: 4%;
     background-color: #E8E8E8;
     border-radius: 20px;
-    display: flex;
     justify-content: center;
     align-items: center;
+    display: none;
+}
+
+.content__type.active {
+    display: flex;
 }
 
 .type__card {

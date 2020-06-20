@@ -1,0 +1,24 @@
+{% load static %}
+
+<div class="content__check">
+    <div class="check__element photo"><img src="{% static 'img/menu-img/mini-mountain@2x.png' %}" class="check__img"></div>
+    <div class="check__element title"></div>
+    <div class="check__element genre"></div>
+    <div class="check__element project"></div>
+    <div class="check__label">공개 범위</div>
+    <div class="check__radio">
+        <div>
+            <input type="radio" id="public" value="public"  name="exposure">
+            <label for="public">전체 공개</label>
+        </div>
+        <div>
+            <input type="radio" id="limited" value="limited" name="exposure">
+            <label for="limited">제한 공개</label>
+        </div>
+        <div>
+            <input type="radio" id="private" value="private" name="exposure">
+            <label for="private">비 공개</label>
+        </div>
+    </div>
+    <button class="check__button">업로드 완료</button>
+</div>  

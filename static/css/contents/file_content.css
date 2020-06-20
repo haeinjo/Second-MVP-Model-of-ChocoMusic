@@ -4,10 +4,14 @@
     margin-left: 4%;
     background-color: #E8E8E8;
     border-radius: 20px;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.content__file.active {
+    display:flex;
 }
 
 .file__info {

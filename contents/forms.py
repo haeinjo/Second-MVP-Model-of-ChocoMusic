@@ -1,6 +1,6 @@
 from django import forms
 from . import models as content_models
-
+from projects import models as project_models
 
 # from core import models as core_models
 
@@ -19,15 +19,19 @@ class ContentForm(forms.ModelForm):
             "exposure_level",
         )
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, team=None, *args, **kwargs):
         super(ContentForm, self).__init__(*args, **kwargs)
+
+        if team is not None:
+            self.fields["project"].queryset = project_models.Project.objects.filter(
+                team=team
+            )
 
         self.fields["content_photo"].required = False
         self.fields["content_title"].widget.attrs.update(
             {"class": "content-info-select"}
         )
         self.fields["genre"].widget.attrs.update({"class": "content-info-select"})
-        self.fields["description"].required = False
         self.fields["description"].widget.attrs.update({"class": "content-info-select"})
         self.fields["project"].widget.attrs.update({"class": "content-info-select"})
         self.fields["exposure_level"].widget = forms.RadioSelect(
