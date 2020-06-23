@@ -23,6 +23,7 @@ const descriptionInput = document.querySelector("#id_description");
 const exposureLevelInput = document.querySelector("#id_exposure_level");
 const formButton = document.querySelector(".form__button");
 const mainContent = document.querySelector(".main__content");
+const mainError = document.querySelector(".main__error");
 
 
 window.onload = initCreateContent();
@@ -49,7 +50,13 @@ function handleBtnNext() {
     switch (stepLevel) {
         case "type":
             if (typeInput.selectedIndex === 0) {
-                // 경고를 뛰운다.
+                // ValueError: Empty Value
+                const errorMessage = document.createElement("span");
+                errorMessage.innerText = "업로드할 파일 유형을 선택해 주세요.";
+                errorMessage.classList.add("error__message");
+                mainError.innerHTML = '';
+                mainError.appendChild(errorMessage);
+                mainError.classList.toggle("active");
             } else {
                 // Type Div를 안보이게 설정하고 다음 Step의 Div를 보이게 한다.
                 contentType.classList.toggle("active");
@@ -72,6 +79,7 @@ function handleBtnNext() {
             if (titleInput.value && projectInput.selectedIndex && genreInput.selectedIndex && descriptionInput.value) {
                 contentInfo.classList.toggle("active");
                 contentCheck.classList.toggle("active");
+                btnNext.classList.toggle("element--hidden");
                 setCheckPhoto();
                 setCheckTitle();
                 setCheckGenre();
@@ -81,8 +89,6 @@ function handleBtnNext() {
                 //경고를 뛰운다.
             }
             break;
-        case "check":
-            break;
         default:
             break;
     }
@@ -90,26 +96,49 @@ function handleBtnNext() {
 }
 
 function handleBtnPre() {
-
+    switch (stepLevel) {
+        case "file":
+            contentType.classList.toggle("active");
+            contentFile.classList.toggle("active");
+            btnPre.classList.add("element--hidden");
+            setProgressBar();
+            stepLevel = "type";
+            mainContent.style.height = "60%";
+            break;
+        case "info":
+            contentInfo.classList.toggle("active");
+            contentFile.classList.toggle("active");
+            setProgressBar();
+            stepLevel = "file";
+            break;
+        case "check":
+            contentInfo.classList.toggle("active");
+            contentCheck.classList.toggle("active");
+            btnNext.classList.toggle("element--hidden");
+            setProgressBar();
+            stepLevel = "info";
+            break;
+        default:
+            break;
+    }
 }
 
 function setProgressBar() {
     switch (stepLevel) {
         case "type":
-            dotAll[0].classList.add("progress--set");
+            dotAll[0].classList.toggle("progress--set");
             break;
         case "file":
-            dotAll[1].classList.add("progress--set");
-            lineAll[0].classList.add("progress--set");
+            dotAll[1].classList.toggle("progress--set");
+            lineAll[0].classList.toggle("progress--set");
             break;
         case "info":
-            dotAll[2].classList.add("progress--set");
-            lineAll[1].classList.add("progress--set");
+            dotAll[2].classList.toggle("progress--set");
+            lineAll[1].classList.toggle("progress--set");
             break;
         case "check":
-            dotAll[3].classList.add("progress--set");
-            lineAll[2].classList.add("progress--set");
-            btnNext.classList.add("element--hidden");
+            dotAll[3].classList.toggle("progress--set");
+            lineAll[2].classList.toggle("progress--set");
             break;
         default:
             break;

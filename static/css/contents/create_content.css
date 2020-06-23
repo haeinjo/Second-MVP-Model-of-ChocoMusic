@@ -62,6 +62,22 @@
     height: 60%;
 }
 
+.main__error {
+    display: none;
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.main__error.active {
+    display: flex;
+}
+
 .main__progress {
     display: flex;
     width: 100%;

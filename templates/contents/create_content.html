@@ -23,11 +23,13 @@
     {% include 'mixins/contents/content_check.html' %}
     </div>
     {% include 'partials/contents/progress_bar.html' %}
+    <div class="main__error">
+    </div>
 </div>
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" class="element--hidden">
         {% csrf_token %}
         {{ form }}
-        <button class="form__button"></button>
+        <button class="form__button"></button> 
 </form>
 {% endblock main %}
 
