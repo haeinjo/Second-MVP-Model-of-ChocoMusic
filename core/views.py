@@ -8,7 +8,7 @@ from contents import models as content_models
 def intro_view(request):
     app_key_k = os.environ.get("KAKAO_JS")
 
-    return render(request, "intro2.html", {"app_key_k": app_key_k})
+    return render(request, "intro.html", {"app_key_k": app_key_k})
 
 
 def home_view(request):

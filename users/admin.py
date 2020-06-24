@@ -18,6 +18,7 @@ class CustomUserAdmin(UserAdmin):
             "Custom Profile",
             {
                 "fields": (
+                    "login_method",
                     "alias",
                     "birthdate",
                     "address",
@@ -42,6 +43,7 @@ class CustomUserAdmin(UserAdmin):
         "email_varified",
         "phone_varified",
         "is_first",
+        "login_method",
     )
 
     filter_horizontal = (

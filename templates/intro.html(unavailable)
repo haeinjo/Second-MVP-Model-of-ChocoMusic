@@ -4,54 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/core/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/intro/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/intro/nav-intro.css' %}">
     <link href=f"https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/intro/intro.css' %}">
-    <script src="{% static 'js/intro/intro.js' %}" type="text/javascript" defer></script>
+
+    {% comment %} kakao map api {% endcomment %}
+    {% comment %} <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{app_key_k}}&libraries=services"></script> {% endcomment %}
     <title>
         Welcome to ChocoMusic
     </title>
 </head>
 
 <body>
-    <section style="background-image: url({% static 'img/background@2x.png' %})" class="section__login">
-        <header class="login__header">
-            <a href="#" class="header__logo"><img src="{% static 'img/logo title@2x.png' %}" class="logo__img"></a>
-            <nav class="login__nav">
-                <ul class="nav__menu">
-                    <li><a href="#">Sign up</a></li>
-                    <li><a href="#">Log in</a></li>
-                </ul>
-            </nav>
-        </header>
-        <article class="login__article">
-            <h1 class="article__title">You Can Be a Musicain</h1>
-            <p class="article__subtitle"><span>초코뮤직</span>과 함께 수 많은 뮤지션들을 찾아보세요.</p>
-            <button class="article__btn">Go to Sign up</button>
-        </article>
-        <article class="login__form">
-            <img src="{% static 'img/logo-w@2x.png' %}" class="form__img"></img>
-            <button class="form__kakao form__btn"><img src="{% static 'img/menu-img/kakaologo@2x.png' %}" class="kakao__img"><span>카카오톡 계정으로 로그인</span></button>
-            <button class="form__google form__btn"><img src="{% static 'img/menu-img/googlelogo2.png' %}" class="google__img"><span>구글 계정으로 로그인</span></button>
-            <div class="form__boundary"><div></div><span>or</span><div></div></div>
-            <input class="form__email form__btn" placeholder="이메일 주소를 입력하세요.">
-            <button class="form__submit form__btn"><span>이메일 계정으로 로그인</span><img src="{% static 'img/menu-img/arrow@2x.png' %}" class="submit__img"></button>
-            <img src="{% static 'img/menu-img/cancle@2x.png' %}" class="form__cancle">
-        </article>
-    </section>
-    <main>
-        <section class="info">
-        </section>
-    </main>
-    <footer class="container footer">
-        {% include 'partials/footer.html' %}
-    </footer>
-    {% comment %} <script src="{% static 'js/intro/sign-up.js' %}" type="text/javascript"></script> {% endcomment %}
-</body>
-
-</html>
-
-
-{% comment %} <div style="background-image: url({% static 'img/background@2x.png' %})" class="bg-intro">
+    <div style="background-image: url({% static 'img/background@2x.png' %})" class="bg-intro">
         <div class="topline"></div>
         <div class="container icontainer">
             <div class="nav-container">
@@ -82,6 +50,8 @@
             <div class="btn">
             <span id="sign-up" class="display-clip">Go to sign up</sapn>
             </div>
+            {% comment %} kakao map {% endcomment %}
+            {% comment %} <div id="map" style="width:500px;height:400px;"></div> {% endcomment %}
 
             <div class="login-panel no-display-flex">
                 <div style="background-image: url({% static 'img/logo-w@2x.png' %})" class="login-panel-logo"></div>
@@ -109,4 +79,63 @@
     {% block main %}
     <main class="container">
     </main>
-    {% endblock main %} {% endcomment %}
+    {% endblock main %}
+    <footer class="container footer">
+        {% include 'partials/footer.html' %}
+    </footer>
+    <script src="{% static 'js/intro/sign-up.js' %}" type="text/javascript"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends 'base.html' %}
+{% load static %}
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'css/intro/nav-intro.css' %}">
+{% endblock add_css %}
+
+{% block page_title %}
+Welcome to ChocoMusic
+{% endblock page_title %}
+
+
+{% block header %}
+{% include 'partials/nav_pre.html' %}
+{% endblock header %}
+
+{% block main %}
+<main class="icontainer">
+    <div style="background-image: url({% static 'img/background@2x.png' %})">
+        <h1>간략한 한마디</h1>
+        <div>
+            <a href="{% url 'users:naver_login' %}">네이버계정 로그인</a>
+            <a href="{% url 'users:kakao_login' %}">카카오톡계정 로그인</a>
+            <a href="#">구글아이디 로그인</a>
+        </div>
+        <div>
+            <a href="#">회원가입</a>
+            <a href="#">로그인</a>
+        </div>
+    </div>
+</main>
+{% endblock main %} {% endcomment %}

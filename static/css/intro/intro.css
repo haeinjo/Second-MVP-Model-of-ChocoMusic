@@ -1,11 +1,12 @@
 :root {
     --color-white: #F3F3F3;
-    --color-text-black: #474747;
+    --color-black: #474747;
     --color-btn-yellow: #FCEE11;
     --weight-text-menu: 700; 
     --weight-text-btn: 600;
     --small-font-size: 14px;
     --medium-font-size: 18px;
+    --large-font-size: 30px;
     --super-font-size: 60px;
 }
 
@@ -151,7 +152,7 @@ a {
     text-align: center;
     padding: 12px 0;
     font-size: var(--small-font-size);
-    color: var(--color-text-black);
+    color: var(--color-black);
     font-weight: var(--weight-text-btn);
 }
 
@@ -202,4 +203,36 @@ a {
     width: 14px;
     height: 14px;
     cursor: pointer;
+}
+
+
+/* main */
+/* section info */
+.info {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+    /* bandin */
+.info__article {
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    padding: 120px 240px;
+    height: 50%;
+}
+
+.info__article h2 {
+    font-size: var(--large-font-size);
+    color: var(--color-black);
+    margin-bottom: 20px;
+}
+
+.info__article h2 span {
+    color: orange;
+}
+
+.info__upload * {
+    text-align: right;
 }

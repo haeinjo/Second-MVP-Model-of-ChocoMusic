@@ -3,17 +3,22 @@ import requests
 import json
 from django.shortcuts import get_object_or_404
 from django.core.files.base import ContentFile
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.shortcuts import redirect, reverse, render
 from . import models as user_models
 from . import forms as user_forms
 from core import models as core_models
 
 
+def logout_view(request):
+    logout(request)
+    return redirect(reverse("core:intro"))
+
+
 def kakao_login(request):
 
     app_key = os.environ.get("KAKAO_ID")
-    redirect_uri = f"http://127.0.0.1:8000/users/login/kakao/callback/"
+    redirect_uri = "http://127.0.0.1:8000/users/login/kakao/callback/"
 
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?client_id={app_key}&redirect_uri={redirect_uri}&response_type=code"
@@ -129,8 +134,8 @@ def kakao_callback(request):
 def google_login(request):
 
     client_id = os.environ.get("GOOGLE_ID")
-    redirect_uri = f"http://127.0.0.1:8000/users/login/google/callback/"
-    scopes = f"https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+    redirect_uri = "http://127.0.0.1:8000/users/login/google/callback/"
+    scopes = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
     return redirect(
         f"https://accounts.google.com/o/oauth2/v2/auth?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code&scope={scopes}"
     )
@@ -172,21 +177,28 @@ def google_callback(request):
             f"https://www.googleapis.com/oauth2/v1/userinfo?access_token={access_token}"
         )
         profile_json = profile_response.json()
+        print(profile_json)
 
         login_email = profile_json.get("email")
         login_first_name = profile_json.get("given_name")
         login_last_name = profile_json.get("family_name")
         login_avatar = profile_json.get("picture")
 
-        if user_models.User.objects.filter(email=login_email) is not None:
-            raise GoogleException()
-        else:
+        try:
+            existed_user = user_models.User.objects.get(email=login_email)
+            if existed_user.login_method == "google":
+                login(request, existed_user)
+                return redirect(reverse("core:home"))
+            else:
+                raise GoogleException()
+        except user_models.User.DoesNotExist:
             user = user_models.User.objects.create_user(
                 username=login_email,
                 email=login_email,
                 first_name=login_first_name,
                 last_name=login_last_name,
                 email_varified=True,
+                login_method="google",
             )
             user.set_unusable_password()
             user.save()
@@ -198,7 +210,7 @@ def google_callback(request):
             login(request, user)
             return redirect(reverse("core:home"))
     except GoogleException:
-        return redirect(reverse("core:home"))
+        return redirect(reverse("core:intro"))
 
 
 def naver_login(request):
