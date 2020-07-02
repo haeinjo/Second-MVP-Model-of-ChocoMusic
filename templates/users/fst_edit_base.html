@@ -1,15 +1,18 @@
+{% load static %}
+
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원 정보 입력</title>
+    <link rel="stylesheet" href="{% static 'css/fst-edit/fst_base.css' %}"></link>
     {% block css %}
     {% endblock css %}
+    {% block js %}
+    {% endblock js %}
 </head>
 <body>
     {% block content %}
     {% endblock content %}
-    {% block js %}
-    {% endblock js %}
 </body>
 </html>

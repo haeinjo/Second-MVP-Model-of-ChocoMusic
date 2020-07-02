@@ -5,7 +5,9 @@ from . import views as user_views
 app_name = "users"
 
 urlpatterns = [
-    path("logout", user_views.logout_view, name="logout"),
+    path("login/<str:email>/", user_views.LoginView.as_view(), name="login",),
+    path("signup/<str:email>/", user_views.SignUpView.as_view(), name="signup"),
+    path("logout/", user_views.logout_view, name="logout"),
     path("login/kakao/", user_views.kakao_login, name="kakao_login"),
     path("login/kakao/callback/", user_views.kakao_callback, name="kakao_callback"),
     path("fst_edit/", user_views.first_edit, name="fst_edit"),

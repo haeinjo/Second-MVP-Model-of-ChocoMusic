@@ -3,6 +3,8 @@ const loginForm = document.querySelector(".login__form");
 const formCancle = document.querySelector(".form__cancle");
 const formKakao = document.querySelector(".form__kakao");
 const formGoogle = document.querySelector(".form__google");
+const formSubmit = document.querySelector(".form__submit");
+const formEmail = document.querySelector(".form__email");
 
 
 window.onload = initIntro();
@@ -12,6 +14,7 @@ function initIntro() {
     formCancle.addEventListener("click", clickFormCancle);
     formKakao.addEventListener("click", clickFormKakao);
     formGoogle.addEventListener("click", clickFormGoogle);
+    formSubmit.addEventListener("click", clickFormSubmit);
 }
 
 function clickSignUp() {
@@ -28,4 +31,9 @@ function clickFormKakao() {
 
 function clickFormGoogle() {
     location.href = "/users/login/google/";
+}
+
+function clickFormSubmit() {
+    sessionStorage.setItem("userMail", formEmail.value);
+    location.href = "/users/email-check/";
 }

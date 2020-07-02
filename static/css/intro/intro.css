@@ -113,11 +113,28 @@ a {
     background-color: rgba(22, 22, 22, 0.3);
     border-radius: 15px;
     width: 460px;
-    height: 560px;
+    height: 540px;
 }
 
 .login__form.active {
+    animation-duration: 300ms;
+    animation-name: active;
     display: flex;
+}
+
+@keyframes active {
+    0% {
+        opacity: 0;
+        top: 24%;
+    }
+    50% {
+        opacity: 0.5;
+        top: 22%;
+    }
+    100% {
+        opacity: 1;
+        top: 20%;
+    }
 }
 
 .form__img {
@@ -128,7 +145,7 @@ a {
 
 .form__btn {
     width: 80%;
-    height: 8%;
+    height: 44.8px;
     display: flex;
     border-style: none;
     border-radius: 10px;
@@ -174,6 +191,13 @@ a {
 .form__boundary span {
     color: var(--color-white);
     margin: 0 10px;
+}
+
+.form__post {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .form__email {

@@ -39,8 +39,11 @@
             <button class="form__kakao form__btn"><img src="{% static 'img/menu-img/kakaologo@2x.png' %}" class="kakao__img"><span>카카오톡 계정으로 로그인</span></button>
             <button class="form__google form__btn"><img src="{% static 'img/menu-img/googlelogo2.png' %}" class="google__img"><span>구글 계정으로 로그인</span></button>
             <div class="form__boundary"><div></div><span>or</span><div></div></div>
-            <input class="form__email form__btn" placeholder="이메일 주소를 입력하세요.">
-            <button class="form__submit form__btn"><span>이메일 계정으로 로그인</span><img src="{% static 'img/menu-img/arrow@2x.png' %}" class="submit__img"></button>
+            <form method="POST" enctype="multipart/form-data" class="form__post">
+                {% csrf_token %}
+                <input type="text" name="email" class="form__email form__btn" placeholder="이메일 주소를 입력하세요.">
+                <button class="form__submit form__btn"><span>이메일 계정으로 로그인</span><img src="{% static 'img/menu-img/arrow@2x.png' %}" class="submit__img"></button>
+            </form>
             <img src="{% static 'img/menu-img/cancle@2x.png' %}" class="form__cancle">
         </article>
     </section>

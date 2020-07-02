@@ -97,3 +97,16 @@ class City(AbstractItem):
 
     def __str__(self):
         return self.name
+
+
+class LoginMethod(AbstractItem):
+
+    """
+    class: LoginMethod
+    author: haein
+    des: What from login
+    date: 2020-06-25
+    """
+
+    def __str__(self):
+        return self.name

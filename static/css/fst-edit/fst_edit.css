@@ -1,0 +1,151 @@
+.profile-form {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center, center;
+    border-top: 4px solid orange;
+}
+
+.profile-form__bg-img-dark {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    width:100%;
+    height:100%;
+    z-index: 1;
+}
+
+.edit-panel {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    top: 25%;
+    left: 40%;
+    width: 400px;
+    height: 520px;
+    z-index: 3;
+    background-color: rgba(25, 25, 25, 0.9);
+    border-radius: 10px;
+}
+
+.edit-panel__cancel {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+}
+
+.edit-panel__cancel img {
+    width: 15px;
+    height:15px;
+    float: right;
+    cursor: pointer;
+}
+
+.edit-panel__title {
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.edit-panel__form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form__avatar {
+    width: 200px;
+    height: 200px;
+    border: none;
+    border-radius: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.form__avatar:hover {
+    background-color: #DFDFDF;
+}
+
+.avatar__img {
+    width: 30px;
+    height: 25px;
+}
+
+.avatar__img.loaded {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.form__title {
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+    display:block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form__input {
+    background-color: white;
+    width: 90%;
+    height: 40px;
+    margin-top: 15px;
+    border-radius: 7px;
+    border: none;
+    padding-left: 20px;
+}
+
+.form__input:focus {
+    outline: none;
+}
+
+.form__input:focus::placeholder {
+    color: transparent;
+}
+
+.form__input::placeholder {
+    color: #909090;
+    font-weight: 600;
+}
+
+.form__btn {
+    width: 45%;
+    height: 35px;
+    display: flex;
+    background-color: orange;
+    margin-top: 25px;
+    border-radius: 7px;
+    border: none;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.form__btn:hover {
+    background-color: #F18A15;
+}
+
+.form__btn span {
+    display:flex;
+    width: 95%;
+    color: white;
+    justify-content: center;
+    padding-left: 10px;
+}
+
+.form__btn img {
+    width: 8px;
+    height: 12px;
+    background-size: contain;
+    background-position: center, center;
+    background-repeat: no-repeat;
+}

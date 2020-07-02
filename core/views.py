@@ -1,5 +1,4 @@
 import os
-import requests
 from django.shortcuts import render, redirect, reverse
 from users import models as user_models
 from contents import models as content_models
@@ -8,7 +7,16 @@ from contents import models as content_models
 def intro_view(request):
     app_key_k = os.environ.get("KAKAO_JS")
 
-    return render(request, "intro.html", {"app_key_k": app_key_k})
+    if request.method == "GET":
+        return render(request, "intro.html", {"app_key_k": app_key_k})
+    else:
+        email = request.POST.get("email")
+        print(f"email: {request.POST}")
+        try:
+            user_models.User.objects.get(email=email)
+            return redirect(reverse("users:login", kwargs={"email":email}))
+        except user_models.User.DoesNotExist:
+            return redirect(reverse("users:signup", kwargs={"email":email}))
 
 
 def home_view(request):

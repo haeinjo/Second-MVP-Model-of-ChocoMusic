@@ -8,7 +8,7 @@
 {% endblock css %}
 
 {% block content %}
-<div style="background-image: url({% static 'img/background-image/bass-guitar@2x.png' %})" class="bg-img">
+<div style="background-image: url({% static 'img/background-image/bass-guitar@2x.png' %})" class="profile-form">
     <div class="bg-img-dark"></div>
     <div class="fst-edit-panel" id="region-panel">
         <div class="fst-cancel-panel">
@@ -29,9 +29,6 @@
         <form method="POST" enctype="multipart/form-data" class="fst-form">
             {% csrf_token %}
             {{ form.borough }}
-            {{ form.alias.as_hidden }}
-            {{ form.avatar.as_hidden }}
-            {{ form.is_first.as_hidden }}
             <button class="fst-btn"><span>2 of 4</span><div style="background-image: url({% static 'img/menu-img/arrow.png' %})"><div></button>
         </form>
     </div>

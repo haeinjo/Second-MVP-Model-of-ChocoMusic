@@ -82,3 +82,16 @@ class BoroughAdmin(admin.ModelAdmin):
     """
 
     pass
+
+
+@admin.register(models.LoginMethod)
+class LoginMethodAdmin(admin.ModelAdmin):
+
+    """
+    class: LoginMethodAdmin
+    author: haein
+    des: LoginMethod admin
+    date: 2020-06-25
+    """
+
+    pass

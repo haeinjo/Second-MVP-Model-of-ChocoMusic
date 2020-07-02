@@ -22,14 +22,14 @@ class User(AbstractUser):
         (GENDER_OTHER, "Other"),
     )
 
-    KAKAO_LOGIN = "kakao"
-    GOOGLE_LOGIN = "google"
-    EMAIL_LOGIN = "email"
+    LOGIN_GOOGLE = "google"
+    LOGIN_KAKAO = "kakao"
+    LOGIN_EMAIL = "email"
 
     LOGIN_CHOICES = (
-        (KAKAO_LOGIN, "Kakao"),
-        (GOOGLE_LOGIN, "Google"),
-        (EMAIL_LOGIN, "Email"),
+        (LOGIN_GOOGLE, "Google"),
+        (LOGIN_KAKAO, "Kakao"),
+        (LOGIN_EMAIL, "Email"),
     )
 
     email = models.EmailField(max_length=256)  # unique 부분에 대해서는 추후 상의가 필요함
@@ -49,9 +49,7 @@ class User(AbstractUser):
     email_varified = models.BooleanField(default=False)
     phone_varified = models.BooleanField(default=False)
     is_first = models.BooleanField(default=True)
-    login_method = models.CharField(
-        max_length=8, choices=LOGIN_CHOICES, default=EMAIL_LOGIN
-    )
+    login_method = models.CharField(max_length=16, choices=LOGIN_CHOICES, default="")
 
     def __str__(self):
         return f"{self.email}"

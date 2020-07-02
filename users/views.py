@@ -1,13 +1,40 @@
 import os
 import requests
 import json
+from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.core.files.base import ContentFile
-from django.contrib.auth import login, logout
+from django.views.generic import FormView, View
+from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect, reverse, render
 from . import models as user_models
 from . import forms as user_forms
 from core import models as core_models
+
+
+class LoginView(FormView):
+
+    template_name = "users/login.html"
+    form_class = user_forms.UserLoginForm
+    success_url = reverse_lazy("core:home")
+
+    def form_valid(self, form):
+        email = form.cleaned_data.get("email")
+        password = form.cleaned_data.get("password")
+        user = authenticate(self.request, username=email, password=password)
+
+        if user is not None:
+            login(self.request, user)
+        return super().form_valid(form)
+
+    def get_initial(self):
+        self.initial["email"] = self.kwargs["email"]
+        return self.initial.copy()
+
+
+class SignUpView(FormView):
+
+    pass
 
 
 def logout_view(request):
@@ -69,17 +96,18 @@ def kakao_callback(request):
             profile_json = profile_request.json()
 
             kakao_account = profile_json.get("kakao_account")
+            print(kakao_account)
             profile = kakao_account.get("profile")
             email = kakao_account.get("email")
             # gender = kakao_account.get("gender")
             profile_image = profile.get("profile_image-url")
-
+            login_kakao = core_models.LoginMethod.objects.get(name="kakao")
             if email is None:
                 raise KakaoException()
             else:  # email 정보를 받아 왓을때
                 try:
                     existed_user = user_models.User.objects.get(email=email)
-                    if existed_user.login_method == "kakao":
+                    if existed_user.login_methods == "kakao":
                         login(request, existed_user)
                         if existed_user.is_first:
                             return redirect(reverse("users:fst_edit"))
@@ -88,13 +116,14 @@ def kakao_callback(request):
                         return render(request, "intro.html", {"is_duplicate": True})
                 except user_models.User.DoesNotExist:
                     new_user = user_models.User.objects.create_user(
-                        username=email, email=email, login_method="kakao",
+                        username=email, email=email
                     )
+                    new_user.login_methods.set(login_kakao)
                     new_user.save()
                     if profile_image is not None:
                         photo_request = requests.get(profile_image)
                         new_user.avatar.save(
-                            f"{email}-avatar", ContentFile(photo_request.content)
+                            f"{email}-avatar.png", ContentFile(photo_request.content)
                         )
                     login(request, new_user)
                     return redirect(reverse("users:fst_edit"))
@@ -178,7 +207,6 @@ def google_callback(request):
         )
         profile_json = profile_response.json()
         print(profile_json)
-
         login_email = profile_json.get("email")
         login_first_name = profile_json.get("given_name")
         login_last_name = profile_json.get("family_name")
@@ -186,9 +214,14 @@ def google_callback(request):
 
         try:
             existed_user = user_models.User.objects.get(email=login_email)
+
             if existed_user.login_method == "google":
                 login(request, existed_user)
-                return redirect(reverse("core:home"))
+                print(existed_user.is_first)
+                if existed_user.is_first:
+                    return redirect(reverse("users:fst_edit"))
+                else:
+                    return redirect(reverse("core:home"))
             else:
                 raise GoogleException()
         except user_models.User.DoesNotExist:
@@ -205,10 +238,11 @@ def google_callback(request):
             if login_avatar is not None:
                 photo_request = requests.get(login_avatar)
                 user.avatar.save(
-                    f"{login_email}-avatar", ContentFile(photo_request.content)
+                    f"{user.email}-avatar.png", ContentFile(photo_request.content)
                 )
+
             login(request, user)
-            return redirect(reverse("core:home"))
+            return redirect(reverse("users:fst_edit"))
     except GoogleException:
         return redirect(reverse("core:intro"))
 
@@ -263,7 +297,10 @@ def first_edit(request):
 
     if request.method == "GET":
         login_user = user_models.User.objects.get(email=request.user)
-        form = user_forms.MusicianInfoForm(instance=login_user)
+        print(login_user.avatar)
+        form = user_forms.MusicianAliasForm(
+            {"alias": login_user.alias, "avatar": login_user.avatar}
+        )
         return render(request, "users/fst_edit_alias.html", {"form": form})
     else:
         user = user_models.User.objects.get(email=request.user)
@@ -338,10 +375,10 @@ def first_edit_region(request):
     cities = ACTIVE_REGION.keys
     boroughs = ACTIVE_REGION.values
     region = json.dumps(ACTIVE_REGION, ensure_ascii=False)
-
+    print(request.method)
     if request.method == "GET":
         login_user = get_object_or_404(user_models.User, email=user_email)
-        form = user_forms.MusicianInfoForm(instance=login_user)
+        form = user_forms.MusicianActiveRegionForm()
         return render(
             request,
             "users/fst_edit_region.html",
