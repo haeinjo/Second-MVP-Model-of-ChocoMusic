@@ -18,6 +18,7 @@ requests = "*"
 djangorestframework = "*"
 firebase-admin = "*"
 pipenv-to-requirements = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.7"
