@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <section style="background-image: url({% static 'img/background@2x.png' %})" class="section__login">
+    <section class="section__login">
         <header class="login__header">
             <a href="#" class="header__logo"><img src="{% static 'img/logo title@2x.png' %}" class="logo__img"></a>
             <nav class="login__nav">
@@ -63,6 +63,17 @@
         {% include 'partials/footer.html' %}
     </footer>
     {% comment %} <script src="{% static 'js/intro/sign-up.js' %}" type="text/javascript"></script> {% endcomment %}
+
+    {% comment %} FireBase Setting {% endcomment %}
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.15.5/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.15.5/firebase-analytics.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
 </body>
 
 </html>

@@ -1,12 +1,13 @@
 from django.urls import path
 from . import views as user_views
+from users.api.v1 import views as user_api_views
 
 
 app_name = "users"
 
 urlpatterns = [
-    path("login/<str:email>/", user_views.LoginView.as_view(), name="login",),
-    path("signup/<str:email>/", user_views.SignUpView.as_view(), name="signup"),
+    path("<str:email>/login/", user_views.LoginView.as_view(), name="login"),
+    path("<str:email>/signup/", user_views.SignUpView.as_view(), name="signup"),
     path("logout/", user_views.logout_view, name="logout"),
     path("login/kakao/", user_views.kakao_login, name="kakao_login"),
     path("login/kakao/callback/", user_views.kakao_callback, name="kakao_callback"),
@@ -18,4 +19,7 @@ urlpatterns = [
     path("login/naver/callback/", user_views.naver_callback, name="naver_callback"),
     path("login/google/", user_views.google_login, name="google_login"),
     path("login/google/callback/", user_views.google_callback, name="google_callback"),
+    # REST API
+    path("", user_api_views.ListUsersView.as_view(), name="api_users"),
+    path("me/", user_api_views.MeView.as_view(), name="api_users_me"),
 ]

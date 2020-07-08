@@ -20,11 +20,10 @@
             <div class="form__avatar">
                 <img src="{% static 'img/menu-img/camera@2x.png' %}" class="avatar__img" title="Profile photo" alt="User avatar of profile"></img>
             </div>
+            {{ form.avatar }}
             <h2 class="form__title">프로필 사진을 선택해주세요</h2>
             {{ form.alias }}
             <button class="form__btn"><span>1 of 4</span><img src="{% static 'img/menu-img/arrow.png' %}"></img></button>
-            {{ form.avatar }}
-            {{ form.is_first.as_hidden }}
         </form>
     </article>
 </section>

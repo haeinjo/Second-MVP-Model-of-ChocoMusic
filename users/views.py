@@ -5,14 +5,16 @@ from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.core.files.base import ContentFile
 from django.views.generic import FormView, View
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect, reverse, render
 from . import models as user_models
 from . import forms as user_forms
+from .mixins import LogedOutOnlyMixin
 from core import models as core_models
 
 
-class LoginView(FormView):
+class LoginView(LogedOutOnlyMixin, FormView):
 
     template_name = "users/login.html"
     form_class = user_forms.UserLoginForm
@@ -32,7 +34,7 @@ class LoginView(FormView):
         return self.initial.copy()
 
 
-class SignUpView(FormView):
+class SignUpView(LogedOutOnlyMixin, FormView):
 
     pass
 
@@ -101,13 +103,14 @@ def kakao_callback(request):
             email = kakao_account.get("email")
             # gender = kakao_account.get("gender")
             profile_image = profile.get("profile_image-url")
-            login_kakao = core_models.LoginMethod.objects.get(name="kakao")
+
             if email is None:
                 raise KakaoException()
             else:  # email 정보를 받아 왓을때
                 try:
                     existed_user = user_models.User.objects.get(email=email)
-                    if existed_user.login_methods == "kakao":
+                    print("sdjflskdfjskldfjklsdjfklsjflksjflksjflksflk")
+                    if existed_user.login_method == "kakao":
                         login(request, existed_user)
                         if existed_user.is_first:
                             return redirect(reverse("users:fst_edit"))
@@ -116,9 +119,8 @@ def kakao_callback(request):
                         return render(request, "intro.html", {"is_duplicate": True})
                 except user_models.User.DoesNotExist:
                     new_user = user_models.User.objects.create_user(
-                        username=email, email=email
+                        username=email, email=email, login_method="kakao"
                     )
-                    new_user.login_methods.set(login_kakao)
                     new_user.save()
                     if profile_image is not None:
                         photo_request = requests.get(profile_image)
@@ -293,13 +295,14 @@ def naver_callback(request):
         pass
 
 
+@login_required
 def first_edit(request):
 
     if request.method == "GET":
         login_user = user_models.User.objects.get(email=request.user)
         print(login_user.avatar)
         form = user_forms.MusicianAliasForm(
-            {"alias": login_user.alias, "avatar": login_user.avatar}
+            {"alias": login_user.alias, "avatar": login_user.avatar, "is_first": True}
         )
         return render(request, "users/fst_edit_alias.html", {"form": form})
     else:
@@ -308,13 +311,14 @@ def first_edit(request):
         for error in form.errors:
             print(f"error: {error}")
         if form.is_valid():
-            print("success is_valid()")
+            print(form.cleaned_data["is_first"])
             form.save()
             return redirect(reverse("users:fst_edit_region"))
         else:
             return render(request, "users/fst_edit_alias.html", {"form": form})
 
 
+@login_required(redirect_field_name=None)
 def first_edit_region(request):
 
     ACTIVE_REGION = {
@@ -409,6 +413,7 @@ def first_edit_region(request):
             )
 
 
+@login_required(redirect_field_name=None)
 def first_edit_position(request):
     positions = core_models.Position.objects.all()
 
@@ -437,6 +442,7 @@ def first_edit_position(request):
             )
 
 
+@login_required(redirect_field_name=None)
 def first_edit_genre(request):
     genres = core_models.Genre.objects.all()
 

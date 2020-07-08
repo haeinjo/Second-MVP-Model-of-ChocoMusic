@@ -75,10 +75,13 @@ class MusicianAliasForm(forms.Form):
 
     alias = forms.CharField(max_length=64, label="별명")
     avatar = forms.FileField()
+    is_first = forms.BooleanField(initial=True)
 
-    class Meta:
-        def __init__(self, *args, **kwargs):
-            self.fields["alias"].widget.attrs.update({"class": "form__input"})
+    def __init__(self, *args, **kwargs):
+        super(MusicianAliasForm, self).__init__(*args, **kwargs)
+        self.fields["alias"].widget.attrs.update({"class": "form__input"})
+        self.fields["avatar"].widget.attrs.update({"class": "form__avatar--hidden"})
+        self.fields["is_first"].widget = forms.HiddenInput
 
 
 class MusicianActiveRegionForm(forms.Form):
@@ -86,6 +89,11 @@ class MusicianActiveRegionForm(forms.Form):
     boroughs = forms.ModelMultipleChoiceField(
         queryset=core_models.Borough.objects.all()
     )
+    is_first = forms.BooleanField(initial=True)
+
+    def __init__(self, *args, **kwargs):
+        super(MusicianActiveRegionForm, self).__init__(*args, **kwargs)
+        self.fields["is_first"].widget = forms.HiddenInput
 
 
 class MusicianInfoForm(forms.ModelForm):

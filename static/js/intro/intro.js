@@ -32,8 +32,3 @@ function clickFormKakao() {
 function clickFormGoogle() {
     location.href = "/users/login/google/";
 }
-
-function clickFormSubmit() {
-    sessionStorage.setItem("userMail", formEmail.value);
-    location.href = "/users/email-check/";
-}

@@ -1,5 +1,7 @@
 import os
 from django.shortcuts import render, redirect, reverse
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from users import models as user_models
 from contents import models as content_models
 
@@ -11,14 +13,21 @@ def intro_view(request):
         return render(request, "intro.html", {"app_key_k": app_key_k})
     else:
         email = request.POST.get("email")
-        print(f"email: {request.POST}")
         try:
-            user_models.User.objects.get(email=email)
-            return redirect(reverse("users:login", kwargs={"email":email}))
+            user = user_models.User.objects.get(email=email)
+            if user.login_method == "eamil":
+                return redirect(reverse("users:login", kwargs={"email": email}))
+            else:
+                login(request, user)
+                if user.is_first:
+                    return redirect(reverse("users:fst_edit"))
+                else:
+                    return redirect(reverse("core:home"))
         except user_models.User.DoesNotExist:
-            return redirect(reverse("users:signup", kwargs={"email":email}))
+            return redirect(reverse("users:signup", kwargs={"email": email}))
 
 
+@login_required
 def home_view(request):
     login_user = request.user
 

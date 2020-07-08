@@ -207,3 +207,7 @@ $RECYCLE.BIN/
 .env
 
 # End of https://www.gitignore.io/api/django,python,windows,visualstudiocode
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

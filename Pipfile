@@ -16,6 +16,7 @@ black = "*"
 django-dotenv = "*"
 requests = "*"
 djangorestframework = "*"
+firebase-admin = "*"
 
 [requires]
 python_version = "3.7"

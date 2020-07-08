@@ -73,6 +73,10 @@
     background-color: #DFDFDF;
 }
 
+.form__avatar--hidden {
+    display: none;
+}
+
 .avatar__img {
     width: 30px;
     height: 25px;

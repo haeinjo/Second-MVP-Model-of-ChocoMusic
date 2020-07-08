@@ -18,11 +18,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("core.urls", namespace="core")),
     path("users/", include("users.urls", namespace="users")),
     path("contents/", include("contents.urls", namespace="contents")),
+    # REST API
+    path("api/v1/users/", include("users.urls", namespace="users_api")),
 ]
 
 if settings.DEBUG:

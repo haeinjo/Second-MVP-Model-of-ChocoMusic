@@ -30,6 +30,8 @@ a {
 /* section login */
 .section__login {
     height: 100%;
+    background: url(/static/img/background@2x.png);
+    box-shadow: inset 0px -20px 20px 0px var(--color-white);
     background-size: cover;
     background-position: center center;
 }

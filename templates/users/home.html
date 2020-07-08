@@ -9,6 +9,7 @@
     <div class="main-l-1">
         <p class="main-l-1-title">{{user.alias}}님을 위한 추천 곡</p>
         <div class="main-l-1-content">
+            {% include 'partials/messages.html' with messages=messages %}
             {% for song in p_songs %}
             <div class="main-l-1-card">
                 <a href="#">
