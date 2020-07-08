@@ -18,6 +18,7 @@ class LoginView(LogedOutOnlyMixin, FormView):
 
     template_name = "users/login.html"
     form_class = user_forms.UserLoginForm
+    
     success_url = reverse_lazy("core:home")
 
     def form_valid(self, form):
