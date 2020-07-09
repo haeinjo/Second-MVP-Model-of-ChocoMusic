@@ -26,8 +26,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = bool(os.environ.get("DEBUG"))
 print(DEBUG)
 ALLOWED_HOSTS = [
-    "choco.eba-2bvmghsd.ap-northeast-2.elasticbeanstalk.com",
-    "127.0.0.1",
+    "chocomusic-dev.eba-mrdqgmau.ap-northeast-2.elasticbeanstalk.com",
 ]
 
 
