@@ -19,6 +19,7 @@ djangorestframework = "*"
 firebase-admin = "*"
 pipenv-to-requirements = "*"
 psycopg2 = "*"
+awsebcli = "*"
 
 [requires]
 python_version = "3.7"
