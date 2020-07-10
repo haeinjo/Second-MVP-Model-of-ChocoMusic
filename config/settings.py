@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    ".elasticbeanstalk.com",
+    "chocomusic-dev.eba-mrdqgmau.ap-northeast-2.elasticbeanstalk.com",
 ]
 
 
