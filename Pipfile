@@ -5,14 +5,12 @@ verify_ssl = true
 
 [dev-packages]
 flake8 = "*"
-black = "*"
 pillow = "*"
 
 [packages]
 django = "*"
 django-seed = "*"
 pillow = "*"
-black = "*"
 django-dotenv = "*"
 requests = "*"
 djangorestframework = "*"
