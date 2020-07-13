@@ -30,14 +30,17 @@ class LoginView(LogedOutOnlyMixin, FormView):
             login(self.request, user)
         return super().form_valid(form)
 
-    def get_initial(self):
-        self.initial["email"] = self.kwargs["email"]
-        return self.initial.copy()
+    # def get_initial(self):
+    #     self.initial["email"] = self.kwargs["email"]
+    #     return self.initial.copy()
 
 
 class SignUpView(LogedOutOnlyMixin, FormView):
 
-    pass
+    template_name = "users/signup.html"
+    form_class = user_forms.UserSignUpForm
+
+    success_url = reverse_lazy("users:login")
 
 
 def logout_view(request):

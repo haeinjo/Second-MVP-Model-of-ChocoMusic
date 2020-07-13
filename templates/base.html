@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/core/nav.css' %}">
     <link rel="stylesheet" href="{% static 'css/core/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/main.css' %}">
     <link href=f"https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     {% block css %}
     {% endblock css %}
+    <script type="text/javascript" defer> const url = "{% url 'contents:add_content' %}"; </script>
+    <script src="{% static 'js/base.js' %}" type="text/javascript" defer></script>
+    {% block js %}
+    {% endblock js %}
     <title>
         {% block page_title %}
         {% endblock page_title %}
@@ -19,54 +22,38 @@
 <body>
     <div class="nav-bg"><div>
     {% block header %}
-    <div class="topline"></div>
-    <header class="container">
-        <div class="nav-container">
-        <div class="nav">
-            <div class="nav-logo">
-                {% if user is not None %}
-                    <a href="{% url 'core:home' %}">
-                {% else %}
-                    <a href="{% url 'core:intro' %}">
-                {% endif %}
-                <img src="{% static 'img/testlogo2.png' %}">
-                </a>
-            </div>
-            <ul class="nav-menu">
-                <div class="nav-menu-1">
-                <li><a href="#">Band-in</a></li>
-                <li>/</li>
-                <li><a href="#">Funding</a></li>
-                </div>
-                {% block search_bar %}
-                <div class="nav-searchbar">
-                    <input name="search_thing" placeholder="검색" style="background-image: url({% static 'img/menu-img/ionic-ios-search@2x.png' %})">
-                </div>
-                {% endblock search_bar %}
-                <div class="nav-menu-2">
-                <li><a href="#"><img src="{% static 'img/menu-img/upload@2x.png'%}" class="nav-menu-2-upload"></a></li>
-                <li><a href="#"><img src="{% static 'img/menu-img/library@2x.png' %}" class="nav-menu-2-icon"></a></li>
-                <li><a href="#"><img src="{% static 'img/menu-img/alram@2x.png' %}" class="nav-menu-2-icon"></a></li>
-                <li><a href="#"><img src="{% static 'img/menu-img/chat@2x.png' %}" class="nav-menu-2-icon"></a></li>
-                <li><a href="#"><img src="{% static 'img/menu-img/user-circle@2x.png' %}" id="nav-menu-2-profile"></a></li>
-                </div>
-            </ul>
-        </div>
-        <div class="logo-underline"></div>
-        </div>
+    <header class="nav">
+        {% if user is not None %}
+        <a href="{% url 'core:home' %}" class="nav__logo">
+        {% else %}
+        <a href="{% url 'core:intro' %}" class="nav__logo">
+        {% endif %}
+        <img src="{% static 'img/testlogo2.png' %}">
+        </a>
+        <ul class="nav__menu nav__menu1">
+            <li><a href="#">Band-in</a></li>
+            <li>/</li>
+            <li><a href="#">Funding</a></li>
+        </ul>
+        {% block search_bar %}
+        <input class="nav__searchbar" name="search_thing" placeholder="검색" style="background-image: url({% static 'img/menu-img/ionic-ios-search@2x.png' %})">
+        {% endblock search_bar %}
+        <ul class="nav__menu">
+            <li><a href="#"><img src="{% static 'img/menu-img/upload@2x.png'%}" class="menu__upload"></a></li>
+            <li><a href="#"><img src="{% static 'img/menu-img/library@2x.png' %}" class="menu__icon"></a></li>
+            <li><a href="#"><img src="{% static 'img/menu-img/alram@2x.png' %}" class="menu__icon"></a></li>
+            <li><a href="#"><img src="{% static 'img/menu-img/chat@2x.png' %}" class="menu__icon"></a></li>
+            <li><a href="#"><img src="{% static 'img/menu-img/user-circle@2x.png' %}" id="menu__profile"></a></li>
+        </ul>
     </header>
     {% endblock header %}
-    <main class="container">
-    {% block main %}
-    {% endblock main %}
-    </main>
+    {% block content %}
+    {% endblock content %}
+    {% block footer %}
     <footer class="container footer">
         {% include 'partials/footer.html' %}
     </footer>
-    <script type="text/javascript"> const url = "{% url 'contents:add_content' %}"; </script>
-    <script src="{% static 'js/base.js' %}" type="text/javascript"></script>
-    {% block js %}
-    {% endblock js %}
+    {% endblock footer %}
 </body>
 
 </html>

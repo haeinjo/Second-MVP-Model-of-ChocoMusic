@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/users/signup.css' %}">
+{% endblock css %}
+{% block js %}
+<script src="{% static 'js/users/signp.js' %}" type="text/javascript" defer></script>
+{% endblock js %}
+
+{% block content %}
+<!-- 제목 -->
+<section class="title">
+    <h1 class="title__main">CHOCO MUSIC</h1>
+</section>
+<form method="POST" enctype="multipart/form-data" class="edit-panel__form">
+
+    <!-- 계정 정보 입력 -->
+    <section class="account">
+        <h2>계정 정보 입력</h2>
+        {{ form.email }}
+        {{ form.password }}
+        {{ form.password1 }}
+        <div>다음</div>
+    </section>
+
+    <!-- 추가 정보 입력 -->
+    <section class="detail">
+        <h2>회원 정보 입력</h2>
+        <div>
+            <img></img>
+            {{ form.alias }}
+        </div>
+        <h3> 지역선택</h3>
+        <input type="text" placeholder="도시선택">
+        <div>
+            <input type="text" placeholder="지역 1">
+            <input type="text" placeholder="지역 2">
+            <input type="text" placeholder="지역 3">
+        </div>
+        <h3>선호 장르 선택</h3>
+        <div>
+            <div>
+                <img src="" alt="">
+                <span>발라드</span>
+            </div>
+            <div>
+                <img src="" alt="">
+                <span>팝</span>
+            </div>
+            <div>
+                <img src="" alt="">
+                <span>재즈</span>
+            </div>
+            <div>
+                <img src="" alt="">
+                <span>락</span>
+            </div>
+            <div>
+                <img src="" alt="">
+                <span>클래식</span>
+            </div>
+            <div>
+                <img src="" alt="">
+                <span>알엔비</span>
+            </div>
+            <div>
+                <img src="" alt="">
+                <span>포크/블루스</span>
+            </div>
+            <div>
+                <img src="" alt="">
+                <span>힙합</span>
+            </div>
+            <div>
+                <img src="" alt="">
+                <span>이렉트로닉</span>
+            </div>
+            <div>
+                <img src="" alt="">
+                <span>그외</span>
+            </div>
+        </div>
+    </section>
+</form>
+{% for field in form %}
+{{field}}
+{% endfor %}
+{% endblock content %}
+{% block footer %}
+{% endblock footer %}

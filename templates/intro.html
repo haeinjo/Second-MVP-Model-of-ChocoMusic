@@ -19,7 +19,7 @@
             <nav class="login__nav">
                 <ul class="nav__menu">
                     {% if not user.is_authenticated %}
-                    <li><a href="#">Sign up</a></li>
+                    <li><a href="{% url 'users:signup' %}">Sign up</a></li>
                     <li><a href="#">Log in</a></li>
                     {% else %}
                     <li><a href="{% url 'users:logout' %}">Log out</a></li>
@@ -31,20 +31,8 @@
             <h1 class="article__title">You Can Be a Musicain</h1>
             <p class="article__subtitle"><span>초코뮤직</span>과 함께 수 많은 뮤지션들을 찾아보세요.</p>
             {% if not user.is_authenticated %}
-            <button class="article__btn">Go to Sign up</button>
+            <button class="article__btn">초코뮤직 시작하기</button>
             {% endif %}
-        </article>
-        <article class="login__form">
-            <img src="{% static 'img/logo-w@2x.png' %}" class="form__img"></img>
-            <button class="form__kakao form__btn"><img src="{% static 'img/menu-img/kakaologo@2x.png' %}" class="kakao__img"><span>카카오톡 계정으로 로그인</span></button>
-            <button class="form__google form__btn"><img src="{% static 'img/menu-img/googlelogo2.png' %}" class="google__img"><span>구글 계정으로 로그인</span></button>
-            <div class="form__boundary"><div></div><span>or</span><div></div></div>
-            <form method="POST" enctype="multipart/form-data" class="form__post">
-                {% csrf_token %}
-                <input type="text" name="email" class="form__email form__btn" placeholder="이메일 주소를 입력하세요.">
-                <button class="form__submit form__btn"><span>이메일 계정으로 로그인</span><img src="{% static 'img/menu-img/arrow@2x.png' %}" class="submit__img"></button>
-            </form>
-            <img src="{% static 'img/menu-img/cancle@2x.png' %}" class="form__cancle">
         </article>
     </section>
     <main>
@@ -138,3 +126,18 @@
     <main class="container">
     </main>
     {% endblock main %} {% endcomment %}
+
+
+
+{% comment %} <article class="login__form">
+    <img src="{% static 'img/logo-w@2x.png' %}" class="form__img"></img>
+    <button class="form__kakao form__btn"><img src="{% static 'img/menu-img/kakaologo@2x.png' %}" class="kakao__img"><span>카카오톡 계정으로 로그인</span></button>
+    <button class="form__google form__btn"><img src="{% static 'img/menu-img/googlelogo2.png' %}" class="google__img"><span>구글 계정으로 로그인</span></button>
+    <div class="form__boundary"><div></div><span>or</span><div></div></div>
+    <form method="POST" enctype="multipart/form-data" class="form__post">
+        {% csrf_token %}
+        <input type="text" name="email" class="form__email form__btn" placeholder="이메일 주소를 입력하세요.">
+        <button class="form__submit form__btn"><span>이메일 계정으로 로그인</span><img src="{% static 'img/menu-img/arrow@2x.png' %}" class="submit__img"></button>
+    </form>
+    <img src="{% static 'img/menu-img/cancle@2x.png' %}" class="form__cancle">
+</article> {% endcomment %}

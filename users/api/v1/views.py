@@ -29,10 +29,10 @@ class ListUsersView(APIView, ListModelMixin):
                 try:
                     user_models.User.objects.get(email=valid_email)
                     return Response(
-                        data="중복되는 이메일 입니다.", status=status.HTTP_409_CONFLICT
+                        data={"code": "409", "status": "CONFLICT", "message": "중복되는 이메일 입니다."}, status=status.HTTP_409_CONFLICT
                     )
                 except user_models.User.DoesNotExist:
-                    return Response(data=serializer.data, status=status.HTTP_200_OK)
+                    return Response(data={"code": "200", "status": "SUCCESS", "data": serializer.data}, status=status.HTTP_200_OK)
             else:
                 print(serializer.errors)
                 return Response(status=status.HTTP_406_NOT_ACCEPTABLE)

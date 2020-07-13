@@ -20,13 +20,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("DJANGO_SECRET", "xDAHGSt7dSvXZrWWXMUJ9nBq6FXa5ARXMQDSWmmg2A8Az3kDkLwPtR62Q")
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET", "xDAHGSt7dSvXZrWWXMUJ9nBq6FXa5ARXMQDSWmmg2A8Az3kDkLwPtR62Q"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
     "choco-dev.eba-ns4vmvix.ap-northeast-2.elasticbeanstalk.com",
+    "127.0.0.1",
 ]
 
 
@@ -97,7 +100,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if not DEBUG:
+if DEBUG:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",

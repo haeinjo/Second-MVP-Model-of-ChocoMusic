@@ -1,13 +1,25 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
-</head>
-<body>
-   <form action="">
-       {{ form.as_p }}
-   </form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/users/login.css' %}">
+{% endblock css %}
+{% block js %}
+<script src="{% static 'js/users/login.js' %}" type="text/javascript" defer></script>
+{% endblock js %}
+
+{% block content %}
+<section class="title">
+    <h1 class="title__main">CHOCO MUSIC</h1>
+    <p class="title__sub">회원가입 방법을 선택해 주세요</p>
+</section>
+<section class="login">
+    <button class="login__btn login__email">초코뮤직 계정 회원가입</button>
+    <div class="login__boundary"><div></div><span>또는</span><div></div></div>
+    <button class="login__btn login__kakao"><img src="{% static 'img/menu-img/logo_kakao.png' %}"><span>카카오톡 계정으로 로그인</span></button>
+    <button class="login__btn login__naver"><img src="{% static 'img/menu-img/logo_naver.png' %}"><span>네이버 계정으로 로그인</span></button>
+    <button class="login__btn login__google"><img src="{% static 'img/menu-img/googlelogo2.png' %}"><span>구글 계정으로 로그인</span></button>
+</section>
+{% endblock content %}
+{% block footer %}
+{% endblock footer %}

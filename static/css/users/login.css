@@ -1,0 +1,104 @@
+:root {
+    --color-real-white: white;
+    --color-white: #F3F3F3;
+    --color-light-gray: #C1C1C1;
+    --color-black: #474747;
+    --color-btn-yellow: #FCEE11;
+    --color-green: #1EC800;
+    --weight-text-menu: 700; 
+    --weight-text-btn: 600;
+    --small-font-size: 14px;
+    --semismall-font-size: 16px;
+    --medium-font-size: 18px;
+    --large-font-size: 30px;
+    --super-font-size: 60px;
+}
+
+*:focus {
+    outline: none;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 300px;
+}
+
+.title__main {
+    color: orange;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+    margin: 50px 0;
+}
+
+.title__sub {
+    color: var(--color-black);
+    text-align: center;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 500px;
+}
+
+.login__btn {
+    width: 400px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: none;
+    border-radius: 30px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: var(--small-font-size);
+}
+
+.login__email {
+    background-color: orange;
+    color: var(--color-white);
+}
+
+.login__boundary {
+    display: flex;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+    margin: 20 0;
+}
+
+.login__boundary div {
+    width: 43%;
+    height: 1px;
+    border-radius: 1px;
+    background-color: var(--color-light-gray);
+}
+
+.login__boundary span {
+    color: var(--color-light-gray);
+    margin: 0 10px;
+}
+
+.login__kakao {
+    background-color: var(--color-btn-yellow);
+}
+
+.login__naver {
+    background-color: var(--color-green);
+    color: var(--color-white);
+}
+
+.login__google {
+    background-color: var(--color-real-white);
+}
+
+.login__btn img {
+    width: 30px;
+    height: 30px;   
+    margin-right: 10px;
+}

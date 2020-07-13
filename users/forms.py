@@ -29,10 +29,8 @@ class UserLoginForm(forms.Form):
 class UserSignUpForm(forms.ModelForm):
     class Meta:
         model = user_models.User
-        fields = ["first_name", "last_name", "email"]
+        fields = ["email", "alias", "genres", "positions", "borough", "avatar"]
         widgets = {
-            "first_name": forms.TextInput(attrs={"placeholder": "이름"}),
-            "last_name": forms.TextInput(attrs={"placeholder": "성"}),
             "email": forms.EmailInput(attrs={"placeholder": "이메일"}),
         }
 

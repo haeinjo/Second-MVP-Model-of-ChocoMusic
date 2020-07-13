@@ -5,6 +5,7 @@
     --weight-text-menu: 700; 
     --weight-text-btn: 600;
     --small-font-size: 14px;
+    --semismall-font-size: 16px;
     --medium-font-size: 18px;
     --large-font-size: 30px;
     --super-font-size: 60px;
@@ -13,7 +14,7 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 a {
@@ -71,6 +72,7 @@ a {
 }
 
 .article__title {
+    margin-top: 70px;
     color: var(--color-white);
     font-size: var(--super-font-size);
     font-weight: 400;
@@ -85,11 +87,12 @@ a {
 }
 
 .article__btn {
-    margin-top: 50px;
-    background-color: rgba(68, 224, 63, 0.7);
+    margin-top: 70px;
+    background-color: rgba(255,165,0, 0.7);
     color: var(--color-white);
-    width: 180px;
+    width: 340px;
     height: 45px;
+    font-size: var(--semismall-font-size);
     border-radius: 20px;
     border-style: none;
     cursor: pointer;
@@ -100,7 +103,7 @@ a {
 }
 
 .article__btn:hover {
-    background-color: #54CF08;
+    background-color: rgba(255,140,0, 0.7);
 }
 
     /* form */
